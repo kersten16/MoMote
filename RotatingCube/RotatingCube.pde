@@ -3,12 +3,14 @@ String remoteKey="null";
 PShape trigger;
 float xAngle;
 float yAngle;
-boolean menuOpen;
+boolean menuOpen=false;
+boolean itemSelected = false;
 String data="" ;
-String joystickx="";
-String joysticky="";
-String limitswitch ="";
-String button = "";
+int joystickx=0;
+int joysticky=0;
+int selected=8;
+int limitswitch =0;
+int button = 0;
 Serial port;
 
 void setup(){
@@ -23,79 +25,114 @@ void setup(){
 
 //------------------------------------------------------------------ 
 void draw(){
-  
+  parseData(data);
+  noStroke();
   fill(0);
   rect(0,0,400,600);
   fill(#b5b5b0);
+  if(itemSelected){
+    menuOpen=false;
+    itemSelected=false;
+    delay(800);
+  }
   if(menuOpen){
-    circularMenu();
-    shape(trigger);
-    trigger.setFill(color(0));
-    if(remoteKey == "trigger"){
-      trigger.setFill(color(127,0,40));
-      stroke(color(255,0,0));
-      System.out.println("trigger");
+    System.out.println("coord"+joystickx+","+joysticky);
+    if(joystickx==1){
+      switch(joysticky){
+        case -1:
+          selected=1;
+          break;
+        case 0:
+          selected=2;
+          break;
+        case 1:
+          selected=3;
+          break;
+      }
+    }
+    else if(joystickx==-1){
+        switch(joysticky){
+          case -1:
+            selected=7;
+            break;
+          case 0:
+            selected=6;
+            break;
+          case 1:
+            selected=5;
+            break;
+      }
     }else{
-       noStroke();
+      switch(joysticky){
+          case -1:
+            selected=0;
+            break;
+          case 0:
+            selected=8;
+            break;
+          case 1:
+            selected=4;
+            break;
+      }
+    }
+    //System.out.println(selected);
+    circularMenu(selected);
+    System.out.println(limitswitch);
+    System.out.println(limitswitch==0);
+    if(limitswitch==0&& selected<8){
+      fill(#E83839);
+      arc(200, 300, 200, 200, (selected)*radians(360/8), (selected+1)*radians(360/8));
+      itemSelected=true;
+    }
+    }
+    else{
+      lights();
+      //fill(50);
+      fill(100, 200, 150);
+      pushMatrix();
+      translate(200, 200,0);
+       yAngle=joystickx;
+       xAngle=joysticky;
+       System.out.println(xAngle+ yAngle);
+        //map(Integer.parseInt(joysticky),0,1023,2*PI,-2*PI);
+      rotateY(yAngle);
+      rotateX(xAngle);
+      box(80);
+      popMatrix();
     }
 
-     //take joystick input and map to option
-  }
-  //ellipse(500,400,50,50);
-  //float x = (mouseX/360.0)*PI;
-  //float y = (mouseY/360.0)*PI;
-
- 
-  lights();
-  //fill(50);
-  fill(100, 200, 150);
-  pushMatrix();
-  translate(200, 200,0);
-  if(mousePressed){
-    yAngle=map(mouseX,0,width,-2*PI,2*PI);
-    xAngle=map(mouseY,0,height,2*PI,-2*PI);
-  }
-
-  rotateY(yAngle);
-  rotateX(xAngle);
-  box(80);
-  popMatrix();
-
  
 }
 
-void circularMenu(){
+void circularMenu(int selected){
   float lastAngle = 0;
-  for (int i = 0; i < 6; i++) {
-    float gradient = map(i, 0, 6, 50, 255);
+  for (int i = 0; i < 8; i++) {
+    noStroke();
+    if(i==selected){
+      strokeWeight(5);
+      stroke(#E83839);
+  }
+    float gradient = map(i, 0, 8, 50, 255);
     fill(gradient);
-    arc(200, 300, 100, 100, lastAngle, lastAngle+radians(360/5));
-    lastAngle += radians(360/5);
+    arc(200, 300, 200, 200, lastAngle, lastAngle+radians(360/8));
+    lastAngle += radians(360/8);
   }
 }
 
-void keyPressed(){
- 
-  /*else*/ if (key==CODED) {
-    if(keyCode==DOWN){
-      remoteKey="button";
-      menuOpen=!menuOpen;
-      redraw();
-    }else if (keyCode==CONTROL){
-      remoteKey="trigger";
-    }   
+void parseData(String data){
+  if(data=="")return;
+  String sectioned []= data.split("\n")[0].split("\\?");
+  String joystick[]=sectioned[0].split(":");
+  joystickx=Integer.parseInt(joystick[0]);
+  joysticky=Integer.parseInt(joystick[1]);
+  limitswitch = Integer.parseInt(sectioned[2].trim());
+
+  if(button != Integer.parseInt(sectioned[1])&& button==0){
+    System.out.println(button);
+    menuOpen=!menuOpen;
   }
-  redraw();
-}
-void keyReleased(){
-  remoteKey="null";
-  redraw();
+  button = Integer.parseInt(sectioned[1]);
 }
 void serialEvent(Serial myPort){
   data=myPort.readStringUntil('\n');
-  String sectioned []= data.split("-");
-  joystickx=sectioned[0].split(":")[0];
-  joysticky=sectioned[0].split(":")[1];
-  button = sectioned[1];
-  limitswitch = sectioned[2];
 }
