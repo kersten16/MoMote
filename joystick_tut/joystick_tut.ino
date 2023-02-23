@@ -37,10 +37,10 @@ void loop() {
   //   // TODO do something here
   // }
 
-  // if (button.isReleased()) {
-  //   Serial.println("The button is released");
-  //   // TODO do something here
-  // }
+  if (button.isReleased()) {
+    Serial.println('z');
+    // TODO do something here
+  }
   // print data to Serial Monitor on Arduino IDE
   String xDirection="";
   String yDirection ="";
