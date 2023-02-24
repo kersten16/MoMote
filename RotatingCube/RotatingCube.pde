@@ -21,7 +21,8 @@ Serial port;
 void setup(){
   size(400, 600, P3D);
   frameRate(5);
-  port = new Serial(this, "COM10", 9600);
+  port = new Serial(this, "/dev/ttyACM0", 9600);
+  ///dev/ttyACM0
   for ( int i=0;i<8;i++){
     float gradient = map(i, 0, 8, 50, 255);
     gradients[i]=gradient;

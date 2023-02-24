@@ -27,6 +27,7 @@ void loop() {
   // read analog X and Y analog values
   xValue = analogRead(VRX_PIN);
   yValue = analogRead(VRY_PIN);
+  //Serial.println(xValue);
   buttonState = digitalRead(BUTTON_PIN);
   switchState = digitalRead(SWITCH_PIN);
 
@@ -46,13 +47,13 @@ void loop() {
   String yDirection ="";
   if(xValue>=810){
     xDirection="-1";
-  }else if(xValue<=790){
+  }else if(xValue<=780){
     xDirection="1";
   }else{xDirection="0";}
   
   if(yValue>=810){
     yDirection="-1";
-  }else if(yValue<=790){
+  }else if(yValue<=780){
     yDirection="1";
   }else{yDirection="0";}
 
