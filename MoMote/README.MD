@@ -1,0 +1,14 @@
+# TODO
+- 3D model class / menu item
+  - path to file
+  - name
+- menu
+  - 3D model list
+  - add a model
+- view
+  - circular menu
+  - 3D model from path
+  - interactions
+    - zoom
+    - pan
+    - rotate
