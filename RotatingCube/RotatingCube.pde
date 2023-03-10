@@ -19,7 +19,7 @@ float colorHue [] = {5,0,0};
 Serial port;
 
 void setup(){
-  size(400, 600, P3D);
+  size(500, 800, P3D);
   frameRate(5);
   port = new Serial(this, "/dev/ttyACM0", 9600);
   ///dev/ttyACM0
@@ -38,7 +38,7 @@ void draw(){
   parseData(data);
   noStroke();
   fill(0);
-  rect(0,0,400,600);
+  rect(0,0,500,800);
   fill(#b5b5b0);
   xAngle=0;
   yAngle=0;
@@ -95,7 +95,7 @@ void draw(){
       circularMenu(selected);
       if(limitswitch==0&& selected<8){
         fill(#ffffff);
-        arc(200, 300, 200, 200, (selected+1)*radians(360/8), (selected+2)*radians(360/8));
+        arc(250, 400, 200, 200, (selected+1)*radians(360/8), (selected+2)*radians(360/8));
         itemSelected=true;
       }
     }
@@ -126,7 +126,7 @@ void circularMenu(int selected){
       stroke(#E83839);
   }
     fill(color(20*(gradients[i]%colorHue[0]),255-gradients[i],gradients[i]));
-    arc(200, 300, 200, 200, lastAngle, lastAngle+radians(360/8));
+    arc(250, 400, 200, 200, lastAngle, lastAngle+radians(360/8));
     lastAngle += radians(360/8);
   }
 }

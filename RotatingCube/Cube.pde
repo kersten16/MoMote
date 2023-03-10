@@ -115,7 +115,7 @@ void updateFace(int rotation){
 
 void drawCube(float xChange, float yChange)
 {
-  translate(200 , 250, 0);
+  translate(250 , 350, 0);
   xAngle=xAngle+xChange;
   yAngle= yAngle+yChange;
   rotateX(xAngle);
@@ -124,56 +124,56 @@ void drawCube(float xChange, float yChange)
 
   // +Z "front" face
   fill(faces[0]);
-  vertex(-80, -80, 80, 0, 84);
-  vertex( 80, -80, 80, 84, 84);
-  vertex( 80, 80, 80, 84, 0);
-  vertex(-80, 80, 80, 0, 0);
-  //vertex(-80, -80,  1);
+  vertex(-100, -100, 100, 0, 84);
+  vertex( 100, -100, 100, 84, 84);
+  vertex( 100, 100, 100, 84, 0);
+  vertex(-100, 100, 100, 0, 0);
+  //vertex(-100, -100,  1);
   endShape();
 
   beginShape(QUAD);
   // -Z "back" face
   fill(faces[5]);
-  vertex( -80, -80, -80, 0, 84);
-  vertex(80, -80, -80, 84, 84);
-  vertex( 80, 80, -80, 84, 0);
-  vertex(-80, 80, -80, 0, 0);
+  vertex( -100, -100, -100, 0, 84);
+  vertex(100, -100, -100, 84, 84);
+  vertex( 100, 100, -100, 84, 0);
+  vertex(-100, 100, -100, 0, 0);
   endShape();
 
   beginShape(QUAD);
   fill(faces[1]);
   // +Y "bottom" face
-  vertex(-80, 80, 80, 0, 84);
-  vertex( 80, 80, 80, 84, 84);
-  vertex( 80, 80, -80, 84, 0);
-  vertex(-80, 80, -80, 0, 0);
+  vertex(-100, 100, 100, 0, 84);
+  vertex( 100, 100, 100, 84, 84);
+  vertex( 100, 100, -100, 84, 0);
+  vertex(-100, 100, -100, 0, 0);
   endShape();
 
   beginShape(QUAD);
   fill(faces[4]);
   // -Y "top" face
-  vertex(-80, -80, -80, 0, 84);
-  vertex( 80, -80, -80, 84, 84);
-  vertex( 80, -80, 80, 84, 0);
-  vertex(-80, -80, 80, 0, 0);
+  vertex(-100, -100, -100, 0, 84);
+  vertex( 100, -100, -100, 84, 84);
+  vertex( 100, -100, 100, 84, 0);
+  vertex(-100, -100, 100, 0, 0);
   endShape();
 
   beginShape(QUAD);
   fill(faces[2]);
   // +X "right" face
-  vertex( 80, -80, 80, 0, 84);
-  vertex( 80, -80, -80, 84, 84);
-  vertex( 80, 80, -80, 84, 0);
-  vertex( 80, 80, 80, 0, 0);
+  vertex( 100, -100, 100, 0, 84);
+  vertex( 100, -100, -100, 84, 84);
+  vertex( 100, 100, -100, 84, 0);
+  vertex( 100, 100, 100, 0, 0);
   endShape();
 
   beginShape(QUAD);
   fill(faces[3]);
   // -X "left" face
-  vertex(-80, -80, -80, 0, 84);
-  vertex(-80, -80, 80, 84, 84);
-  vertex(-80, 80, 80, 84, 0);
-  vertex(-80, 80, -80, 0, 0);
+  vertex(-100, -100, -100, 0, 84);
+  vertex(-100, -100, 100, 84, 84);
+  vertex(-100, 100, 100, 84, 0);
+  vertex(-100, 100, -100, 0, 0);
   endShape();
 }
 
