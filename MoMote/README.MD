@@ -1,9 +1,5 @@
 # TODO
-- 3D model class / menu item
-  - path to file
-  - name
 - menu
-  - 3D model list
   - add a model
 - view
   - circular menu
