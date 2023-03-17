@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.view.GestureDetector
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
