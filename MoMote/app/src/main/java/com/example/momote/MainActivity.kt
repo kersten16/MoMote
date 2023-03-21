@@ -74,6 +74,7 @@ class MainActivity : ComponentActivity() {
         val buffer = readAsset("models/${name}.gltf")
         modelViewer.loadModelGltf(buffer) { uri -> readAsset("models/$uri") }
         modelViewer.transformToUnitCube()
+        /* TODO switch to the model viewer */
     }
 
     private fun loadEnvironment(ibl: String) {
@@ -142,7 +143,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.padding(all = 4.dp),
                     style = MaterialTheme.typography.body2
                 )
-
             }
         }
     }
@@ -163,7 +163,7 @@ class MainActivity : ComponentActivity() {
         ) { imageUri ->
             if (imageUri != null) {
                 println(imageUri)
-                /* TODO add to model list */
+                /* TODO change from uri to path */
                 // adding to list
                 modelList.add(Model(imageUri.lastPathSegment.toString(), imageUri.toString()))
 
