@@ -94,7 +94,7 @@ public class FileSelector : MonoBehaviour
 			GameObject childObject = Instantiate(menuItemPrefab) as GameObject;
 			childObject.GetComponent<modelLoader>().modelPath = FileBrowserHelpers.GetFilename(FileBrowser.Result[0]);
 			childObject.GetComponent<modelLoader>().modelName = FileBrowserHelpers.GetFilename(FileBrowser.Result[0]);
-			childObject.transform.parent = content.transform;
+			childObject.transform.SetParent(content.transform);
 		}
 	}
 }
