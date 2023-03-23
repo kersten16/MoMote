@@ -241,6 +241,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelName: 
   modelPath: 
+  modelTextMesh: {fileID: 6350811796428302784}
 --- !u!1 &6350811796428302784
 GameObject:
   m_ObjectHideFlags: 0

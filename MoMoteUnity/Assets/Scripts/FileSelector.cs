@@ -8,6 +8,7 @@ public class FileSelector : MonoBehaviour
 	// Warning: paths returned by FileBrowser dialogs do not contain a trailing '\' character
 	// Warning: FileBrowser can only show 1 dialog at a time
     public GameObject content;
+	public GameObject menuItemPrefab;
 	void Start()
 	{
 		// Set filters (optional)
@@ -32,6 +33,14 @@ public class FileSelector : MonoBehaviour
 		// Icon: default (folder icon)
 		FileBrowser.AddQuickLink( "Users", "C:\\Users", null );
 
+
+		
+
+		
+	}
+	public void openFileSelector()
+    {
+
 		// Show a save file dialog 
 		// onSuccess event: not registered (which means this dialog is pretty useless)
 		// onCancel event: not registered
@@ -51,7 +60,7 @@ public class FileSelector : MonoBehaviour
 		//						   FileBrowser.PickMode.Folders, false, null, null, "Select Folder", "Select" );
 
 		// Coroutine example
-		StartCoroutine( ShowLoadDialogCoroutine() );
+		StartCoroutine(ShowLoadDialogCoroutine());
 	}
 
 	IEnumerator ShowLoadDialogCoroutine()
@@ -81,7 +90,11 @@ public class FileSelector : MonoBehaviour
 			FileBrowserHelpers.CopyFile( FileBrowser.Result[0], destinationPath );
 
 
-            // instantiate in content a new "model" with path and name as variable
+			// instantiate in content a new "model" with path and name as variable
+			GameObject childObject = Instantiate(menuItemPrefab) as GameObject;
+			childObject.GetComponent<modelLoader>().modelPath = FileBrowserHelpers.GetFilename(FileBrowser.Result[0]);
+			childObject.GetComponent<modelLoader>().modelName = FileBrowserHelpers.GetFilename(FileBrowser.Result[0]);
+			childObject.transform.parent = content.transform;
 		}
 	}
 }
