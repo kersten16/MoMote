@@ -1,7 +1,9 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using SimpleFileBrowser;
+using AppDataManager;//may need to create an instance, not sure
 
 public class FileSelector : MonoBehaviour
 {
@@ -81,6 +83,7 @@ public class FileSelector : MonoBehaviour
 
 		if( FileBrowser.Success )
 		{
+			AppDataManager.writeFile(FileBrowser.Result);
 			// Print paths of the selected files (FileBrowser.Result) (null, if FileBrowser.Success is false)
 			for( int i = 0; i < FileBrowser.Result.Length; i++ ){
 				Debug.Log( FileBrowser.Result[i] );
