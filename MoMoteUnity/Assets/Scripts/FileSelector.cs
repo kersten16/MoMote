@@ -1,12 +1,15 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using SimpleFileBrowser;
+//using static AppDataManager;//may need to create an instance, not sure
 
 public class FileSelector : MonoBehaviour
 {
 	// Warning: paths returned by FileBrowser dialogs do not contain a trailing '\' character
 	// Warning: FileBrowser can only show 1 dialog at a time
+	public AppDataManager dataManager;
     public GameObject content;
 	public GameObject menuItemPrefab;
 	void Start()
@@ -14,7 +17,6 @@ public class FileSelector : MonoBehaviour
 
 		// load from JSON
 
-		
 		// Set filters (optional)
 		// It is sufficient to set the filters just once (instead of each time before showing the file browser dialog), 
 		// if all the dialogs will be using the same filters
@@ -91,6 +93,8 @@ public class FileSelector : MonoBehaviour
 
 		if( FileBrowser.Success )
 		{
+			dataManager.readFile();
+			dataManager.writeFile(FileBrowser.Result);
 			// Print paths of the selected files (FileBrowser.Result) (null, if FileBrowser.Success is false)
 			for( int i = 0; i < FileBrowser.Result.Length; i++ ){
 				Debug.Log( FileBrowser.Result[i] );
