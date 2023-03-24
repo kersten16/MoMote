@@ -11,15 +11,19 @@ public class FileSelector : MonoBehaviour
 	public GameObject menuItemPrefab;
 	void Start()
 	{
+
+		// load from JSON
+
+		
 		// Set filters (optional)
 		// It is sufficient to set the filters just once (instead of each time before showing the file browser dialog), 
 		// if all the dialogs will be using the same filters
-		FileBrowser.SetFilters( true, new FileBrowser.Filter( "Images", ".jpg", ".png" ), new FileBrowser.Filter( "Text Files", ".txt", ".pdf" ) );
+		FileBrowser.SetFilters( true, new FileBrowser.Filter( "Images", ".obj" ));
 
 		// Set default filter that is selected when the dialog is shown (optional)
 		// Returns true if the default filter is set successfully
 		// In this case, set Images filter as the default filter
-		FileBrowser.SetDefaultFilter( ".jpg" );
+		FileBrowser.SetDefaultFilter( ".obj" );
 
 		// Set excluded file extensions (optional) (by default, .lnk and .tmp extensions are excluded)
 		// Note that when you use this function, .lnk and .tmp extensions will no longer be
@@ -78,23 +82,17 @@ public class FileSelector : MonoBehaviour
 		if( FileBrowser.Success )
 		{
 			// Print paths of the selected files (FileBrowser.Result) (null, if FileBrowser.Success is false)
-			for( int i = 0; i < FileBrowser.Result.Length; i++ )
+			for( int i = 0; i < FileBrowser.Result.Length; i++ ){
 				Debug.Log( FileBrowser.Result[i] );
+				// instantiate in content a new "model" with path and name as variable
+				GameObject childObject = Instantiate(menuItemPrefab) as GameObject;
+				childObject.GetComponent<modelLoader>().modelPath = FileBrowser.Result[i];
+				childObject.GetComponent<modelLoader>().modelName = FileBrowserHelpers.GetFilename(FileBrowser.Result[i]);
+				childObject.transform.SetParent(content.transform);
+				childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
 
-			// Read the bytes of the first file via FileBrowserHelpers
-			// Contrary to File.ReadAllBytes, this function works on Android 10+, as well
-			byte[] bytes = FileBrowserHelpers.ReadBytesFromFile( FileBrowser.Result[0] );
-
-			// Or, copy the first file to persistentDataPath
-			string destinationPath = Path.Combine( Application.persistentDataPath, FileBrowserHelpers.GetFilename( FileBrowser.Result[0] ) );
-			FileBrowserHelpers.CopyFile( FileBrowser.Result[0], destinationPath );
-
-
-			// instantiate in content a new "model" with path and name as variable
-			GameObject childObject = Instantiate(menuItemPrefab) as GameObject;
-			childObject.GetComponent<modelLoader>().modelPath = FileBrowserHelpers.GetFilename(FileBrowser.Result[0]);
-			childObject.GetComponent<modelLoader>().modelName = FileBrowserHelpers.GetFilename(FileBrowser.Result[0]);
-			childObject.transform.SetParent(content.transform);
+				// add to JSON
+			}			
 		}
 	}
 }

@@ -24,7 +24,7 @@ public class modelLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
+        //Debug.Log("Active Scene : " + SceneManager.GetActiveScene().name);
     }
 
     public void loadModel(){
@@ -68,7 +68,7 @@ public class modelLoader : MonoBehaviour
         var loader = new OBJLoader();
         loadedModel = loader.Load(modelPath);
         Debug.Log(loadedModel);
-        // todo set the camero to be close to the object
+        // todo set the camera to be close to the object
 
         SceneManager.UnloadSceneAsync(unload);
     }
