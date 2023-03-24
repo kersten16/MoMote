@@ -1,6 +1,9 @@
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Linq;
+using SimpleFileBrowser;
 using UnityEngine;
 
 public class AppDataManager : MonoBehaviour
@@ -25,9 +28,12 @@ public class AppDataManager : MonoBehaviour
             AppData [] _tempData = JsonHelper.FromJson<AppData>(fileContents);
             appData = _tempData.OfType<AppData>().ToList();
         }
+        else{ 
+            writeFile(new string[0]);
+            }
     }
 
-    public void writeFile(List<String> addedFiles)
+    public void writeFile(string[] addedFiles)
     {
         for( int i = 0; i <addedFiles.Length; i++ ){
             AppData newEntry = new AppData();
@@ -40,3 +46,32 @@ public class AppDataManager : MonoBehaviour
         File.WriteAllText(saveFile, jsonString);
     }
 }
+
+ public static class JsonHelper
+    {
+        public static T[] FromJson<T>(string json)
+        {
+            Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
+            return wrapper.Item;
+        }
+ 
+        public static string ToJson<T>(T[] array)
+        {
+            Wrapper<T> wrapper = new Wrapper<T>();
+            wrapper.Item = array;
+            return JsonUtility.ToJson(wrapper);
+        }
+ 
+        public static string ToJson<T>(T[] array, bool prettyPrint)
+        {
+            Wrapper<T> wrapper = new Wrapper<T>();
+            wrapper.Item = array;
+            return JsonUtility.ToJson(wrapper, prettyPrint);
+        }
+ 
+        [Serializable]
+        private class Wrapper<T>
+        {
+            public T[] Item;
+        }
+    }
