@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using SimpleFileBrowser;
-//using static AppDataManager;//may need to create an instance, not sure
+
 
 public class FileSelector : MonoBehaviour
 {
@@ -39,13 +40,13 @@ public class FileSelector : MonoBehaviour
 		// Icon: default (folder icon)
 		FileBrowser.AddQuickLink( "Users", "C:\\Users", null );
 
-
+		setupMenu(dataManager.readFile());
 		
 
 		
 	}
 
-	public void setupMenu(appData[] menuList){
+	public void setupMenu(List<AppData> menuList){
 		foreach (var menuItem in menuList)
 		{
 			GameObject childObject = Instantiate(menuItemPrefab) as GameObject;
@@ -93,7 +94,7 @@ public class FileSelector : MonoBehaviour
 
 		if( FileBrowser.Success )
 		{
-			dataManager.readFile();
+			
 			dataManager.writeFile(FileBrowser.Result);
 			// Print paths of the selected files (FileBrowser.Result) (null, if FileBrowser.Success is false)
 			for( int i = 0; i < FileBrowser.Result.Length; i++ ){

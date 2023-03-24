@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1342,6 +1342,7 @@ GameObject:
   - component: {fileID: 2045869101}
   - component: {fileID: 2045869100}
   - component: {fileID: 2045869103}
+  - component: {fileID: 2045869104}
   m_Layer: 5
   m_Name: addModelButton
   m_TagString: Untagged
@@ -1476,9 +1477,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8bd04f596cec8bd9a754beff64103dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataManager: {fileID: 2045869104}
   content: {fileID: 1305257653}
   menuItemPrefab: {fileID: 3534374838611525535, guid: 1d2fb5c535070dce295cb113585e4bd0,
     type: 3}
+--- !u!114 &2045869104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045869098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4428eb9931d0df4d9a97de04742da96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2111777459
 GameObject:
   m_ObjectHideFlags: 0

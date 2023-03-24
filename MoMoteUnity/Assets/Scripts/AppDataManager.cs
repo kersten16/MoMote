@@ -15,10 +15,11 @@ public class AppDataManager : MonoBehaviour
     void Awake()
     {
         // Update the field once the persistent path exists.
-        saveFile = Application.persistentDataPath + "/appdata.json";
+        //saveFile = Application.persistentDataPath + "/appData.json";
+        saveFile = "./Assets/Resources/appData.json";
     }
 
-    public void readFile()
+    public List<AppData> readFile()
     {
         // Does the file exist?
         if (File.Exists(saveFile))
@@ -27,7 +28,9 @@ public class AppDataManager : MonoBehaviour
             string fileContents = File.ReadAllText(saveFile);
             AppData [] _tempData = JsonHelper.FromJson<AppData>(fileContents);
             appData = _tempData.OfType<AppData>().ToList();
+
         }
+        return appData;
     }
 
     public void writeFile(string[] addedFiles)
