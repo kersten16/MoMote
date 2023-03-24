@@ -42,9 +42,19 @@ public class FileSelector : MonoBehaviour
 
 		
 	}
+
+	public void setupMenu(appData[] menuList){
+		foreach (var menuItem in menuList)
+		{
+			GameObject childObject = Instantiate(menuItemPrefab) as GameObject;
+			childObject.GetComponent<modelLoader>().modelPath = menuItem.path;
+			childObject.GetComponent<modelLoader>().modelName = menuItem.name;
+			childObject.transform.SetParent(content.transform);
+			childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+		}
+	}
 	public void openFileSelector()
     {
-
 		// Show a save file dialog 
 		// onSuccess event: not registered (which means this dialog is pretty useless)
 		// onCancel event: not registered

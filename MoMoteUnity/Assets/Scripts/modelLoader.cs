@@ -68,6 +68,10 @@ public class modelLoader : MonoBehaviour
         var loader = new OBJLoader();
         loadedModel = loader.Load(modelPath);
         Debug.Log(loadedModel);
+        GameObject newSceneCam = SceneManager.GetActiveScene().GetRootGameObjects()[0];
+        Debug.Log(newSceneCam.gameObject.name);
+        newSceneCam.GetComponent<modelViewer>().loadedModel = loadedModel;
+        newSceneCam.GetComponent<modelViewer>().setCam();
         // todo set the camera to be close to the object
 
         SceneManager.UnloadSceneAsync(unload);
