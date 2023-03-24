@@ -28,14 +28,12 @@ public class AppDataManager : MonoBehaviour
             AppData [] _tempData = JsonHelper.FromJson<AppData>(fileContents);
             appData = _tempData.OfType<AppData>().ToList();
         }
-        else{ 
-            writeFile(new string[0]);
-            }
     }
 
     public void writeFile(string[] addedFiles)
     {
         for( int i = 0; i <addedFiles.Length; i++ ){
+            Debug.Log(addedFiles[i]);
             AppData newEntry = new AppData();
             newEntry.path= addedFiles[i];
 			newEntry.name = FileBrowserHelpers.GetFilename(addedFiles[i]);

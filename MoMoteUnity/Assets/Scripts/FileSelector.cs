@@ -17,7 +17,6 @@ public class FileSelector : MonoBehaviour
 
 		// load from JSON
 
-		dataManager=new AppDataManager();
 		// Set filters (optional)
 		// It is sufficient to set the filters just once (instead of each time before showing the file browser dialog), 
 		// if all the dialogs will be using the same filters
