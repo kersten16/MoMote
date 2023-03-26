@@ -1,7 +1,15 @@
 fileFormatVersion: 2
-guid: daba88a30f38f3f4d8df0d146acfcd08
+guid: 542a37534fa624c4cb90ded402505a57
+labels:
+- Ui
+- Radial
+- Menu
+- Pie
+- Circular
+- Selection
+timeCreated: 1448226899
+licenseType: Store
 MonoImporter:
-  externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
   executionOrder: 0
