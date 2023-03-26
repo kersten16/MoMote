@@ -8,11 +8,13 @@ public class modelViewer : MonoBehaviour
     // Start is called before the first frame update
     public Camera cam;
     public GameObject loadedModel;
+    public GameObject radialMenu;
     Bounds bounds;
     bool loaded = false;
     void Start()
     {
           loaded = false;
+          radialMenu.SetActive(false);
     }
 
     public void setCam(){
@@ -39,12 +41,15 @@ public class modelViewer : MonoBehaviour
         if (loaded){
             // todo get normal between previous input and current input
             // todo rotation angle = delta between previous input and current input
-            rotate(new Vector3(1,1,1), 20*Time.deltaTime);
+            //rotate(new Vector3(1,1,1), 20*Time.deltaTime);
             if(Input.GetKey(KeyCode.Z)){
                 zoom(0.1f);
             }
             if(Input.GetKey(KeyCode.S)){
                 zoom(-0.1f);
+            }
+            if(Input.GetKeyDown(KeyCode.M)){
+                radialMenu.SetActive(!radialMenu.activeSelf);
             }
         }
         
@@ -55,6 +60,8 @@ public class modelViewer : MonoBehaviour
     }
 
     void zoom(float z){
-        transform.Translate(Vector3.forward*z);
+        var distance = Vector3.Distance(transform.position, bounds.center);
+        if ( (z > 0 && distance > 0.4f) || ( z < 0 && distance < 50))
+            transform.Translate(Vector3.forward*z);
     }
 }
