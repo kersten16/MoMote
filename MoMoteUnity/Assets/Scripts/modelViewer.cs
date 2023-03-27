@@ -48,6 +48,8 @@ public class modelViewer : MonoBehaviour
             if(Input.GetKey(KeyCode.S)){
                 zoom(-0.1f);
             }
+
+            // open radial menu
             if(Input.GetKeyDown(KeyCode.M)){
                 radialMenu.SetActive(!radialMenu.activeSelf);
             }
@@ -55,8 +57,9 @@ public class modelViewer : MonoBehaviour
         
     }
 
-    void rotate(Vector3 axis, float angle){
-            transform.RotateAround(bounds.center, axis, angle);
+    void rotate(Vector2 joystick){
+            transform.RotateAround(bounds.center, Vector3.left, joystick.y);
+            transform.RotateAround(bounds.center, Vector3.up, joystick.x);
     }
 
     void zoom(float z){
