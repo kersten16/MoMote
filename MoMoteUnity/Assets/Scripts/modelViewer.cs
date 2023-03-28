@@ -11,10 +11,19 @@ public class modelViewer : MonoBehaviour
     public GameObject radialMenu;
     Bounds bounds;
     bool loaded = false;
+    public float zoomFactor = 0.001f;
+
+    Texture2D virtualPhoto;
+    private string modelName;
+    private int sqr = 256;
+
+
     void Start()
     {
-          loaded = false;
-          radialMenu.SetActive(false);
+        sqr = Screen.width;
+        loaded = false;
+        radialMenu.SetActive(false);
+        virtualPhoto = new Texture2D(sqr, sqr, TextureFormat.RGB24, false);
     }
 
     public void setCam(){
@@ -32,9 +41,12 @@ public class modelViewer : MonoBehaviour
         float cameraView = 2.0f * Mathf.Tan(0.5f * Mathf.Deg2Rad * cam.fieldOfView); // Visible height 1 meter in front
         float distance = cameraDistance * objectSize / cameraView; // Combined wanted distance from the object
         distance += 0.5f * objectSize; // Estimated offset from the center to the outside of the object
-        cam.transform.position = bounds.center - distance * cam.transform.forward; 
+        cam.transform.position = bounds.center - distance * cam.transform.forward;
+        modelName = loadedModel.name;
         loaded = true;
+        StartCoroutine(TakeSnapshot());
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -43,10 +55,10 @@ public class modelViewer : MonoBehaviour
             // todo rotation angle = delta between previous input and current input
             //rotate(new Vector3(1,1,1), 20*Time.deltaTime);
             if(Input.GetKey(KeyCode.Z)){
-                zoom(0.1f);
+                zoom(-zoomFactor);
             }
             if(Input.GetKey(KeyCode.S)){
-                zoom(-0.1f);
+                zoom(zoomFactor);
             }
             if(Input.GetKey(KeyCode.UpArrow)){
                 rotate(new Vector2(0,0.1f));
@@ -66,18 +78,39 @@ public class modelViewer : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.M)){
                 radialMenu.SetActive(!radialMenu.activeSelf);
             }
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                StartCoroutine(TakeSnapshot());
+            }
         }
-        
+
     }
 
     void rotate(Vector2 joystick){
-            transform.RotateAround(bounds.center, Vector3.left, joystick.y);
-            transform.RotateAround(bounds.center, Vector3.up, joystick.x);
+            loadedModel.transform.RotateAround(loadedModel.transform.position, Vector3.left, joystick.y);
+            loadedModel.transform.RotateAround(loadedModel.transform.position, Vector3.up, joystick.x);
     }
 
     void zoom(float z){
-        var distance = Vector3.Distance(transform.position, bounds.center);
-        if ( (z > 0 && distance > 0.4f) || ( z < 0 && distance < 50))
-            transform.Translate(Vector3.forward*z);
+        if ( (z < 0 && cam.orthographicSize > 0.001f) || ( z > 0 && cam.orthographicSize < 1))
+        {
+            cam.orthographicSize += z;
+        }
+    }
+
+    WaitForEndOfFrame frameEnd = new WaitForEndOfFrame();
+    WaitForSeconds delaySceneLoading = new WaitForSeconds(3);
+
+    public IEnumerator TakeSnapshot()
+    {
+        yield return delaySceneLoading;
+        yield return frameEnd;
+
+        virtualPhoto.ReadPixels(new Rect(0, Screen.height/2 - sqr/2, sqr, sqr), 0, 0);
+        virtualPhoto.Apply();
+        byte[] bytes = virtualPhoto.EncodeToPNG();
+        string path = Application.persistentDataPath + "/" + modelName + ".png";
+        System.IO.File.WriteAllBytes(path, bytes);
     }
 }

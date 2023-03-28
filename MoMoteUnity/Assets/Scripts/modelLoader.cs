@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Dummiesman;
@@ -12,6 +13,7 @@ public class modelLoader : MonoBehaviour
     public string modelPath;
 
     public GameObject modelTextMesh;
+    public Image modelPreview;
     private GameObject loadedModel;
 
     // Start is called before the first frame update

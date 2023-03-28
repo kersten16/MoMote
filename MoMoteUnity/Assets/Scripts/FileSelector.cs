@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using SimpleFileBrowser;
-
+using UnityEngine.UI;
 
 public class FileSelector : MonoBehaviour
 {
@@ -54,7 +54,40 @@ public class FileSelector : MonoBehaviour
 			childObject.GetComponent<modelLoader>().modelName = menuItem.name;
 			childObject.transform.SetParent(content.transform);
 			childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = Resources.Load<Sprite>(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
+			
+			childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = LoadNewSprite(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
 		}
+	}
+
+	public Sprite LoadNewSprite(string FilePath, float PixelsPerUnit = 100.0f)
+	{
+
+		// Load a PNG or JPG image from disk to a Texture2D, assign this texture to a new sprite and return its reference
+
+		Texture2D SpriteTexture = LoadTexture(FilePath);
+		Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0, 0), PixelsPerUnit);
+
+		return NewSprite;
+	}
+
+	public Texture2D LoadTexture(string FilePath)
+	{
+
+		// Load a PNG or JPG file from disk to a Texture2D
+		// Returns null if load fails
+
+		Texture2D Tex2D;
+		byte[] FileData;
+
+		if (File.Exists(FilePath))
+		{
+			FileData = File.ReadAllBytes(FilePath);
+			Tex2D = new Texture2D(2, 2);           // Create new "empty" texture
+			if (Tex2D.LoadImage(FileData))           // Load the imagedata into the texture (size is set automatically)
+				return Tex2D;                 // If data = readable -> return texture
+		}
+		return null;                     // Return null if load failed
 	}
 	public void openFileSelector()
     {
@@ -86,7 +119,7 @@ public class FileSelector : MonoBehaviour
 		// Load file/folder: both, Allow multiple selection: true
 		// Initial path: default (Documents), Initial filename: empty
 		// Title: "Load File", Submit button text: "Load"
-		yield return FileBrowser.WaitForLoadDialog( FileBrowser.PickMode.FilesAndFolders, true, null, null, "Load Files and Folders", "Load" );
+		yield return FileBrowser.WaitForLoadDialog( FileBrowser.PickMode.FilesAndFolders, false, null, null, "Load Files and Folders", "Load" );
 
 		// Dialog is closed
 		// Print whether the user has selected some files/folders or cancelled the operation (FileBrowser.Success)
@@ -100,12 +133,17 @@ public class FileSelector : MonoBehaviour
 			for( int i = 0; i < FileBrowser.Result.Length; i++ ){
 				Debug.Log( FileBrowser.Result[i] );
 				// instantiate in content a new "model" with path and name as variable
-				GameObject childObject = Instantiate(menuItemPrefab) as GameObject;
-				childObject.GetComponent<modelLoader>().modelPath = FileBrowser.Result[i];
-				childObject.GetComponent<modelLoader>().modelName = FileBrowserHelpers.GetFilename(FileBrowser.Result[i]);
-				childObject.transform.SetParent(content.transform);
-				childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+				GameObject model = Instantiate(menuItemPrefab);
+				model.GetComponent<modelLoader>().modelPath = FileBrowser.Result[i];
+				model.GetComponent<modelLoader>().modelName = FileBrowserHelpers.GetFilename(FileBrowser.Result[i]);
+				model.transform.SetParent(content.transform);
+				model.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
 
+				model.GetComponent<modelLoader>().loadModel();
+
+				byte[] bytes = null;
+				string path = Application.persistentDataPath + model.GetComponent<modelLoader>().modelName;
+				System.IO.File.WriteAllBytes(path, bytes);
 				// add to JSON
 			}			
 		}
