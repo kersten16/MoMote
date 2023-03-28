@@ -48,6 +48,19 @@ public class modelViewer : MonoBehaviour
             if(Input.GetKey(KeyCode.S)){
                 zoom(-0.1f);
             }
+            if(Input.GetKey(KeyCode.UpArrow)){
+                rotate(new Vector2(0,0.1f));
+            }
+            if(Input.GetKey(KeyCode.DownArrow)){
+                rotate(new Vector2(0,-0.1f));
+            }
+            if(Input.GetKey(KeyCode.LeftArrow)){
+                rotate(new Vector2(0.1f,0));
+
+            }
+            if(Input.GetKey(KeyCode.RightArrow)){
+                rotate(new Vector2(-0.1f,0));
+            }
 
             // open radial menu
             if(Input.GetKeyDown(KeyCode.M)){
