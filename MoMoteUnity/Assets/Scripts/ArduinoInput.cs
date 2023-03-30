@@ -21,10 +21,10 @@ using System.IO.Ports;
 public class SerialController : MonoBehaviour
 {
     [Tooltip("Port name with which the SerialPort object will be created.")]
-    public string portName = "COM10";
+    public static string portName = "COM10";
 
     [Tooltip("Baud rate that the serial device is using to transmit data.")]
-    public int baudRate = 9600;
+    public static int baudRate = 9600;
 
     // [Tooltip("Reference to an scene object that will receive the events of connection, " +
     //          "disconnection and the messages from the serial device.")]
@@ -48,7 +48,7 @@ public class SerialController : MonoBehaviour
 
     // Internal reference to the Thread and the object that runs in it.
     protected Thread thread;
-    protected SerialThreadLines serialThread;
+    //protected SerialThreadLines serialThread;
 
     SerialPort data_stream = new SerialPort(portName, baudRate);
     public string receivedString;

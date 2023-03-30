@@ -78,8 +78,10 @@ public class modelLoader : MonoBehaviour
         Debug.Log(newSceneCam.gameObject.name);
         newSceneCam.GetComponent<modelViewer>().loadedModel = loadedModel;
         newSceneCam.GetComponent<modelViewer>().setCam();
+        /*
         loadedModel.AddComponent<MultiTouch>();
         loadedModel.AddComponent<TouchLogic>();
+        */
         // todo set the camera to be close to the object
 
         SceneManager.UnloadSceneAsync(unload);
