@@ -10,9 +10,12 @@ public class FileSelector : MonoBehaviour
 {
 	// Warning: paths returned by FileBrowser dialogs do not contain a trailing '\' character
 	// Warning: FileBrowser can only show 1 dialog at a time
+	public pointerScroller ps;
 	public AppDataManager dataManager;
     public GameObject content;
 	public GameObject menuItemPrefab;
+
+
 	void Start()
 	{
 
@@ -57,6 +60,7 @@ public class FileSelector : MonoBehaviour
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = Resources.Load<Sprite>(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
 			
 			childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = LoadNewSprite(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
+			ps.selectObj();
 		}
 	}
 
