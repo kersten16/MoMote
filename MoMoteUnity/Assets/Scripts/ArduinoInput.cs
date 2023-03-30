@@ -47,12 +47,10 @@ public class arduinoInput : MonoBehaviour
     public const string SERIAL_DEVICE_DISCONNECTED = "__Disconnected__";
 
     // Internal reference to the Thread and the object that runs in it.
-    SerialPort data_stream ;
     protected Thread thread;
     //protected SerialThreadLines serialThread;
 
     SerialPort data_stream = new SerialPort(portName, baudRate);
-    protected SerialThreadLines serialThread;
     public string receivedString;
     public GameObject testData;
     public Rigidbody rb;
