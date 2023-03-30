@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Dummiesman;
+using SimpleFileBrowser;
 using System.IO;
 
 public class modelLoader : MonoBehaviour
@@ -60,20 +61,25 @@ public class modelLoader : MonoBehaviour
         }
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(name));
 
-        if (!File.Exists(modelPath))
+        if (!FileBrowserHelpers.FileExists(modelPath))
         {
-            Debug.LogError("Please set FilePath in ObjFromFile.cs to a valid path.");
-            yield break;
+            Debug.Log(modelPath);
+            Debug.LogError("Please set FilePath in modelLoader.cs to a valid path.");
+            //yield break;
         }
 
         //load
         var loader = new OBJLoader();
-        loadedModel = loader.Load(modelPath);
+        Stream s = new MemoryStream(FileBrowserHelpers.ReadBytesFromFile(modelPath));
+        loadedModel = loader.Load(s);
+        loadedModel.name = modelName.Split('.')[0];
         Debug.Log(loadedModel);
         GameObject newSceneCam = SceneManager.GetActiveScene().GetRootGameObjects()[0];
         Debug.Log(newSceneCam.gameObject.name);
         newSceneCam.GetComponent<modelViewer>().loadedModel = loadedModel;
         newSceneCam.GetComponent<modelViewer>().setCam();
+        loadedModel.AddComponent<MultiTouch>();
+        loadedModel.AddComponent<TouchLogic>();
         // todo set the camera to be close to the object
 
         SceneManager.UnloadSceneAsync(unload);

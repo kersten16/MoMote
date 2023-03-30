@@ -144,10 +144,6 @@ public class FileSelector : MonoBehaviour
 				model.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
 
 				model.GetComponent<modelLoader>().loadModel();
-
-				byte[] bytes = null;
-				string path = Application.persistentDataPath + model.GetComponent<modelLoader>().modelName;
-				System.IO.File.WriteAllBytes(path, bytes);
 				// add to JSON
 			}			
 		}

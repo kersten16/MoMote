@@ -16,7 +16,12 @@ public class AppDataManager : MonoBehaviour
     {
         // Update the field once the persistent path exists.
         //saveFile = Application.persistentDataPath + "/appData.json";
-        saveFile = "./Assets/Resources/appData.json";
+        saveFile = Application.persistentDataPath + "appData.json";
+        if (!File.Exists(saveFile))
+        {
+            // The file does not exist -> run event
+            writeFile(new string[0]);
+        }
     }
 
     public List<AppData> readFile()
