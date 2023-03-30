@@ -2,6 +2,7 @@ using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SimpleFileBrowser;
 
 public class modelViewer : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class modelViewer : MonoBehaviour
         cam.transform.position = bounds.center - distance * cam.transform.forward;
         modelName = loadedModel.name;
         loaded = true;
-        StartCoroutine(TakeSnapshot());
+        StartCoroutine(TakeSnapshot(false));
     }
 
     // Update is called once per frame
@@ -61,17 +62,17 @@ public class modelViewer : MonoBehaviour
                 zoom(zoomFactor);
             }
             if(Input.GetKey(KeyCode.UpArrow)){
-                rotate(new Vector2(0,0.1f));
+                rotate(new Vector2(0,1f));
             }
             if(Input.GetKey(KeyCode.DownArrow)){
-                rotate(new Vector2(0,-0.1f));
+                rotate(new Vector2(0,-1f));
             }
             if(Input.GetKey(KeyCode.LeftArrow)){
-                rotate(new Vector2(0.1f,0));
+                rotate(new Vector2(1f,0));
 
             }
             if(Input.GetKey(KeyCode.RightArrow)){
-                rotate(new Vector2(-0.1f,0));
+                rotate(new Vector2(-1f,0));
             }
 
             // open radial menu
@@ -81,14 +82,14 @@ public class modelViewer : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.P))
             {
-                StartCoroutine(TakeSnapshot());
+                StartCoroutine(TakeSnapshot(true));
             }
         }
 
     }
 
     void rotate(Vector2 joystick){
-            loadedModel.transform.RotateAround(loadedModel.transform.position, Vector3.left, joystick.y);
+            loadedModel.transform.RotateAround(loadedModel.transform.position, Vector3.right, joystick.y);
             loadedModel.transform.RotateAround(loadedModel.transform.position, Vector3.up, joystick.x);
     }
 
@@ -102,15 +103,18 @@ public class modelViewer : MonoBehaviour
     WaitForEndOfFrame frameEnd = new WaitForEndOfFrame();
     WaitForSeconds delaySceneLoading = new WaitForSeconds(3);
 
-    public IEnumerator TakeSnapshot()
+    public IEnumerator TakeSnapshot(bool rewrite)
     {
-        yield return delaySceneLoading;
-        yield return frameEnd;
-
-        virtualPhoto.ReadPixels(new Rect(0, Screen.height/2 - sqr/2, sqr, sqr), 0, 0);
-        virtualPhoto.Apply();
-        byte[] bytes = virtualPhoto.EncodeToPNG();
         string path = Application.persistentDataPath + "/" + modelName + ".png";
-        System.IO.File.WriteAllBytes(path, bytes);
+        if (!FileBrowserHelpers.FileExists(path) || rewrite){
+            yield return delaySceneLoading;
+            yield return frameEnd;
+
+            virtualPhoto.ReadPixels(new Rect(0, Screen.height/2 - sqr/2, sqr, sqr), 0, 0);
+            virtualPhoto.Apply();
+            byte[] bytes = virtualPhoto.EncodeToPNG();
+            System.IO.File.WriteAllBytes(path, bytes);
+            Debug.Log("saved to " + path);
+        }
     }
 }

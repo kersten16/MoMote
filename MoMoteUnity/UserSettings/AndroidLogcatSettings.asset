@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "df3848d1",
         "name": "com.DefaultCompany.MoMoteUnity",
-        "processId": 23388,
+        "processId": 18534,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,97 +11,85 @@
         {
             "deviceId": "df3848d1",
             "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 15274,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 15731,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 16425,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 16685,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 16977,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 17288,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 17503,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 18017,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 18259,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 18727,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 18974,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 21965,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
-            "processId": 22507,
-            "exited": false
-        },
-        {
-            "deviceId": "df3848d1",
-            "name": "com.DefaultCompany.MoMoteUnity",
             "processId": 22724,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "df3848d1",
             "name": "com.DefaultCompany.MoMoteUnity",
             "processId": 23106,
-            "exited": false
+            "exited": true
         },
         {
             "deviceId": "df3848d1",
             "name": "com.DefaultCompany.MoMoteUnity",
             "processId": 23388,
+            "exited": true
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.DefaultCompany.MoMoteUnity",
+            "processId": 25420,
+            "exited": true
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.miui.home",
+            "processId": 3031,
+            "exited": false
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.DefaultCompany.MoMoteUnity",
+            "processId": 28982,
+            "exited": false
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.DefaultCompany.MoMoteUnity",
+            "processId": 30025,
+            "exited": false
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.DefaultCompany.MoMoteUnity",
+            "processId": 30340,
+            "exited": false
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.DefaultCompany.MoMoteUnity",
+            "processId": 1453,
+            "exited": false
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.DefaultCompany.MoMoteUnity",
+            "processId": 2099,
+            "exited": false
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.DefaultCompany.MoMoteUnity",
+            "processId": 2794,
+            "exited": false
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.DefaultCompany.MoMoteUnity",
+            "processId": 10663,
+            "exited": false
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.DefaultCompany.MoMoteUnity",
+            "processId": 18148,
+            "exited": false
+        },
+        {
+            "deviceId": "df3848d1",
+            "name": "com.DefaultCompany.MoMoteUnity",
+            "processId": 18534,
             "exited": false
         }
     ],
