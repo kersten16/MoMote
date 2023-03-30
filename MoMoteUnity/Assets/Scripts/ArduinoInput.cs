@@ -18,7 +18,7 @@ using System.IO.Ports;
  * on the integrity of the message. It's up to the one that makes sense of the
  * data.
  */
-public class SerialController : MonoBehaviour
+public class arduinoInput : MonoBehaviour
 {
     [Tooltip("Port name with which the SerialPort object will be created.")]
     public static string portName = "COM10";
@@ -47,10 +47,12 @@ public class SerialController : MonoBehaviour
     public const string SERIAL_DEVICE_DISCONNECTED = "__Disconnected__";
 
     // Internal reference to the Thread and the object that runs in it.
+    SerialPort data_stream ;
     protected Thread thread;
     //protected SerialThreadLines serialThread;
 
     SerialPort data_stream = new SerialPort(portName, baudRate);
+    protected SerialThreadLines serialThread;
     public string receivedString;
     public GameObject testData;
     public Rigidbody rb;
@@ -63,6 +65,7 @@ public class SerialController : MonoBehaviour
     // ------------------------------------------------------------------------
     void Start()
     {
+        data_stream = new SerialPort(portName, baudRate);
         data_stream.Open();
     }
 
@@ -73,7 +76,8 @@ public class SerialController : MonoBehaviour
     void Update()
     {
         receivedString = data_stream.ReadLine();
-        datas = receivedString.Split(','); // [0] = joystick x [1] = joystick y [2] = button [3] = trigger
+        datas = receivedString.Split(',');
+        print (datas[0]);
         // rb.AddForce();
         // rb.AddForce();
         // transform.Rotate(0,,); parameters for manipulating object
