@@ -70,7 +70,6 @@ public class SerialController : MonoBehaviour
     // Invoked whenever the SerialController gameobject is deactivated.
     // It stops and destroys the thread that was reading from the serial device.
     // ------------------------------------------------------------------------
-    --------------------------------------------------------------
     void Update()
     {
         receivedString = data_stream.ReadLine();
