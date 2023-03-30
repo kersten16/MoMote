@@ -51,6 +51,7 @@ public class modelViewer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = Vector3.zero;
         if (loaded){
             // todo get normal between previous input and current input
             // todo rotation angle = delta between previous input and current input
@@ -62,17 +63,17 @@ public class modelViewer : MonoBehaviour
                 zoom(zoomFactor);
             }
             if(Input.GetKey(KeyCode.UpArrow)){
-                rotate(new Vector2(0,1f));
-            }
-            if(Input.GetKey(KeyCode.DownArrow)){
                 rotate(new Vector2(0,-1f));
             }
+            if(Input.GetKey(KeyCode.DownArrow)){
+                rotate(new Vector2(0,1f));
+            }
             if(Input.GetKey(KeyCode.LeftArrow)){
-                rotate(new Vector2(1f,0));
+                rotate(new Vector2(-1f,0));
 
             }
             if(Input.GetKey(KeyCode.RightArrow)){
-                rotate(new Vector2(-1f,0));
+                rotate(new Vector2(1f,0));
             }
 
             // open radial menu
@@ -89,14 +90,27 @@ public class modelViewer : MonoBehaviour
     }
 
     void rotate(Vector2 joystick){
-            loadedModel.transform.RotateAround(loadedModel.transform.position, Vector3.right, joystick.y);
-            loadedModel.transform.RotateAround(loadedModel.transform.position, Vector3.up, joystick.x);
+            transform.RotateAround(loadedModel.transform.position, transform.right, joystick.y);
+            transform.RotateAround(loadedModel.transform.position, transform.up, joystick.x);
     }
 
     void zoom(float z){
-        if ( (z < 0 && cam.orthographicSize > 0.001f) || ( z > 0 && cam.orthographicSize < 1))
+        Debug.Log(cam.orthographic);
+        if (cam.orthographic)
         {
-            cam.orthographicSize += z;
+            if ( (z < 0 && cam.orthographicSize > 0.001f) || ( z > 0 && cam.orthographicSize < 1))
+            {
+                cam.orthographicSize += z;
+            }
+        }
+        else
+        {
+            var dist = Vector3.Distance(cam.transform.position, loadedModel.transform.position);
+            Debug.Log(dist);
+            if ((z < 0 && dist > 0.15f) || (z > 0 && dist < 10))
+            {
+                transform.Translate(Vector3.back * z);
+            }
         }
     }
 
