@@ -29,7 +29,7 @@ void loop() {
   yValue = analogRead(VRY_PIN);
   //Serial.println(xValue);
   buttonState = digitalRead(BUTTON_PIN);
-  switchState = digitalRead(SWITCH_PIN);
+  switchState = digitalRead(SWITCH_PIN)*(-1)+1;
 
   bValue = button.getState();
 
@@ -57,8 +57,8 @@ void loop() {
     yDirection="1";
   }else{yDirection="0";}
 
-  String jsString = xDirection +':'+ yDirection+'?';
-  String bString =String(buttonState)+'?';
+  String jsString = xDirection +','+ yDirection+',';
+  String bString =String(buttonState)+',';
   String sString= String(switchState);
   Serial.print(jsString);
   Serial.print(bString);
