@@ -1,11 +1,11 @@
 #include <ezButton.h>
-#define VRX_PIN  A3 // Arduino pin connected to VRX pin
-#define VRY_PIN  A0 // Arduino pin connected to VRY pin
+#define VRX_PIN  A0 // Arduino pin connected to VRX pin
+#define VRY_PIN  A3 // Arduino pin connected to VRY pin
 #define BUTTON_PIN 2 
 #define SWITCH_PIN 7
-#define SW_PIN   5
+//#define SW_PIN   5
 
-ezButton button(SW_PIN);
+//ezButton button(SW_PIN);
 
 int xValue = 0; // To store value of the X axis
 int yValue = 0; // To store value of the Y axis
@@ -18,11 +18,11 @@ int centerY = 0;
 void setup() {
   Serial.begin(9600) ;
   pinMode(SWITCH_PIN,INPUT_PULLUP);
-  button.setDebounceTime(50);
+  //button.setDebounceTime(50);
 }
 
 void loop() {
-   button.loop();
+  // button.loop();
    
   // read analog X and Y analog values
   xValue = analogRead(VRX_PIN);
@@ -31,17 +31,9 @@ void loop() {
   buttonState = digitalRead(BUTTON_PIN);
   switchState = digitalRead(SWITCH_PIN)*(-1)+1;
 
-  bValue = button.getState();
+ // bValue = button.getState();
 
-  // if (button.isPressed()) {
-  //   Serial.println("The button is pressed");
-  //   // TODO do something here
-  // }
 
-  if (button.isReleased()) {
-    Serial.println('z');
-    // TODO do something here
-  }
   // print data to Serial Monitor on Arduino IDE
   String xDirection="";
   String yDirection ="";
@@ -57,7 +49,7 @@ void loop() {
     yDirection="1";
   }else{yDirection="0";}
 
-  String jsString = xDirection +','+ yDirection+',';
+  String jsString = String(xValue) +','+ String(yValue)+',';
   String bString =String(buttonState)+',';
   String sString= String(switchState);
   Serial.print(jsString);
