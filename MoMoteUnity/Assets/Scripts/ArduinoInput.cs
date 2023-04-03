@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Threading;
 using System.Collections;
 using System.IO.Ports;
@@ -18,7 +19,7 @@ using System.IO.Ports;
  * on the integrity of the message. It's up to the one that makes sense of the
  * data.
  */
-public class arduinoInput : MonoBehaviour
+public class ArduinoInput : MonoBehaviour
 {
     [Tooltip("Port name with which the SerialPort object will be created.")]
     public static string portName = "COM10";
@@ -28,7 +29,7 @@ public class arduinoInput : MonoBehaviour
 
     // [Tooltip("Reference to an scene object that will receive the events of connection, " +
     //          "disconnection and the messages from the serial device.")]
-    // public GameObject messageListener;
+     public GameObject messageListener;
 
     // [Tooltip("After an error in the serial communication, or an unsuccessful " +
     //          "connect, how many milliseconds we should wait.")]
@@ -50,12 +51,13 @@ public class arduinoInput : MonoBehaviour
     protected Thread thread;
     //protected SerialThreadLines serialThread;
 
-    SerialPort data_stream = new SerialPort(portName, baudRate);
+    public SerialPort data_stream = new SerialPort(portName, baudRate);
     public string receivedString;
-    public GameObject testData;
-    public Rigidbody rb;
+    //public GameObject testData;
+    //public Rigidbody rb;
     public float sensitivity = 0.01f;
     public string[] datas;
+    public bool sceneLoaded = false;
     // ------------------------------------------------------------------------
     // Invoked whenever the SerialController gameobject is activated.
     // It creates a new thread that tries to connect to the serial device
@@ -63,6 +65,7 @@ public class arduinoInput : MonoBehaviour
     // ------------------------------------------------------------------------
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         data_stream = new SerialPort(portName, baudRate);
         data_stream.Open();
     }
@@ -75,10 +78,21 @@ public class arduinoInput : MonoBehaviour
     {
         receivedString = data_stream.ReadLine();
         datas = receivedString.Split(',');
-        print (datas[0]);
+        if( SceneManager.GetActiveScene().name == "MenuScene"){
+            messageListener.GetComponent<pointerScroller>().receiveData(datas);
+
+        }else if (SceneManager.GetActiveScene().name == "ModelViewer"){
+            Debug.Log("in model viewer");
+            messageListener.GetComponent<modelViewer>().receiveData(datas);
+        }
+        
         // rb.AddForce();
         // rb.AddForce();
         // transform.Rotate(0,,); parameters for manipulating object
+    }
+
+    void onDestroy(){
+        data_stream.Close();
     }
 
 

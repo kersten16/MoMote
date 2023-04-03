@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -290,6 +290,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62489616}
   m_CullTransparentMesh: 1
+--- !u!1 &116245052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 116245054}
+  - component: {fileID: 116245053}
+  m_Layer: 0
+  m_Name: ArduinoReceiver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &116245053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116245052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 536c9d529166e124abe509a359f724b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageListener: {fileID: 1217113076}
+  receivedString: 
+  sensitivity: 0.01
+  datas: []
+  sceneLoaded: 0
+--- !u!4 &116245054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 116245052}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 232.76534, y: 376.45428, z: 185.37793}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,7 +983,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Content: {fileID: 1305257653}
-  System: {fileID: 1043947072}
+  ScrollView: {fileID: 1146175122}
+  ESystem: {fileID: 1043947072}
+  arduinoInput: {fileID: 0}
 --- !u!1 &1305257653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,6 +1559,7 @@ MonoBehaviour:
   content: {fileID: 1305257653}
   menuItemPrefab: {fileID: 3534374838611525535, guid: 1d2fb5c535070dce295cb113585e4bd0,
     type: 3}
+  arduinoInput: {fileID: 116245053}
 --- !u!114 &2045869104
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -88,6 +88,10 @@ public class RMF_RadialMenu : MonoBehaviour {
 
     }
 
+    public void changeJoyValue(Vector2 joystick){
+        xAxis = (int) joystick.x;
+        yAxis = (int) joystick.y;
+    }
 
     void Start() {
 
@@ -114,7 +118,7 @@ public class RMF_RadialMenu : MonoBehaviour {
         if (!useGamepad)
             rawAngle = Mathf.Atan2(Input.mousePosition.y - rt.position.y, Input.mousePosition.x - rt.position.x) * Mathf.Rad2Deg;
         else
-            rawAngle = Mathf.Atan2(yAxis-500, xAxis-500) * Mathf.Rad2Deg;
+            rawAngle = Mathf.Atan2(yAxis-500, 500-xAxis) * Mathf.Rad2Deg;
 
         //If no gamepad, update the angle always. Otherwise, only update it if we've moved the joystick.
         if (!useGamepad)

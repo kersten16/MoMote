@@ -14,6 +14,7 @@ public class FileSelector : MonoBehaviour
 	public AppDataManager dataManager;
     public GameObject content;
 	public GameObject menuItemPrefab;
+	public ArduinoInput arduinoInput;
 
 
 	void Start()
@@ -57,6 +58,8 @@ public class FileSelector : MonoBehaviour
 			childObject.GetComponent<modelLoader>().modelName = menuItem.name;
 			childObject.transform.SetParent(content.transform);
 			childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+			childObject.GetComponent<modelLoader>().arduinoInput = arduinoInput;
+			
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = Resources.Load<Sprite>(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
 			
 			childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = LoadNewSprite(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
@@ -142,6 +145,7 @@ public class FileSelector : MonoBehaviour
 				model.GetComponent<modelLoader>().modelName = FileBrowserHelpers.GetFilename(FileBrowser.Result[i]);
 				model.transform.SetParent(content.transform);
 				model.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
+				model.GetComponent<modelLoader>().arduinoInput = arduinoInput;
 
 				model.GetComponent<modelLoader>().loadModel();
 				// add to JSON

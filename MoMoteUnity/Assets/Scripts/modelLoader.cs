@@ -15,6 +15,7 @@ public class modelLoader : MonoBehaviour
 
     public GameObject modelTextMesh;
     public Image modelPreview;
+    public ArduinoInput arduinoInput;
     private GameObject loadedModel;
 
     // Start is called before the first frame update
@@ -75,15 +76,16 @@ public class modelLoader : MonoBehaviour
         loadedModel.name = modelName.Split('.')[0];
         Debug.Log(loadedModel);
         GameObject newSceneCam = SceneManager.GetActiveScene().GetRootGameObjects()[0];
+        arduinoInput.messageListener = newSceneCam;
         Debug.Log(newSceneCam.gameObject.name);
         newSceneCam.GetComponent<modelViewer>().loadedModel = loadedModel;
-        newSceneCam.GetComponent<modelViewer>().setCam();
+        SceneManager.UnloadSceneAsync(unload);
+        
         /*
         loadedModel.AddComponent<MultiTouch>();
         loadedModel.AddComponent<TouchLogic>();
         */
         // todo set the camera to be close to the object
 
-        SceneManager.UnloadSceneAsync(unload);
     }
 }

@@ -1,8 +1,11 @@
+using System;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SimpleFileBrowser;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class modelViewer : MonoBehaviour
 {
@@ -10,9 +13,12 @@ public class modelViewer : MonoBehaviour
     public Camera cam;
     public GameObject loadedModel;
     public GameObject radialMenu;
+    public RMF_RadialMenu radialMenuScript;
+    public EventSystem ESystem;
+    public AsyncOperation unloader;
     Bounds bounds;
     bool loaded = false;
-    public float zoomFactor = 0.001f;
+    public float zoomFactor = 10f;
 
     Texture2D virtualPhoto;
     private string modelName;
@@ -130,5 +136,45 @@ public class modelViewer : MonoBehaviour
             System.IO.File.WriteAllBytes(path, bytes);
             Debug.Log("saved to " + path);
         }
+    }
+
+    int oldButtonValue = 0;
+    public void receiveData(string [] input){
+        Debug.Log(input[0]);
+        int joystickX = Int32.Parse(input[0]);
+        int joystickY = Int32.Parse(input[1]);
+        int triggerValue = Int32.Parse(input[3]);
+        int buttonValue = Int32.Parse(input[2]);
+
+        if (buttonValue-oldButtonValue == 1){
+            radialMenu.SetActive(!radialMenu.activeSelf);
+        }
+        if (!radialMenu.activeSelf){
+            if (triggerValue == 1){
+                if (joystickY > 600){
+                    zoom(-zoomFactor);
+                }
+                else if (joystickY < 400){
+                    zoom(zoomFactor);
+                }
+            }else{
+                if (joystickY > 600){
+                    rotate(new Vector2(0,-5f));
+                }
+                if (joystickY < 400){
+                    rotate(new Vector2(0,5f));
+                }
+                if (joystickX > 600){
+                    rotate(new Vector2(-5f,0));
+                }
+                if (joystickX < 400){
+                    rotate(new Vector2(5f,0));
+                }
+            }
+
+        } else {
+            radialMenuScript.changeJoyValue(new Vector2(joystickX, joystickY));
+        }
+        oldButtonValue = buttonValue;
     }
 }
