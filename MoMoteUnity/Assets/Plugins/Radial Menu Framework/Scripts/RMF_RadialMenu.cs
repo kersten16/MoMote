@@ -109,7 +109,7 @@ public class RMF_RadialMenu : MonoBehaviour {
 
         //If your gamepad uses different horizontal and vertical joystick inputs, change them here!
         //==============================================================================================
-        bool joystickMoved = xAxis-500 != 0 || yAxis-500 != 0;
+        bool joystickMoved = xAxis > 600 || xAxis < 400 || yAxis > 600 || yAxis < 400;
         //==============================================================================================
 
 
