@@ -68,6 +68,7 @@ public class ArduinoInput : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         data_stream = new SerialPort(portName, baudRate);
         data_stream.Open();
+
     }
 
     // ------------------------------------------------------------------------

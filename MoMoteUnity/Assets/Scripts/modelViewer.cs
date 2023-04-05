@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,10 +24,13 @@ public class modelViewer : MonoBehaviour
     Texture2D virtualPhoto;
     private string modelName;
     private int sqr = 256;
+    string FILE_PATH;
+    StreamWriter writer;
 
 
     void Start()
     {
+        LogManager.writeToLog("In Model Viewer");
         sqr = Screen.width;
         loaded = false;
         radialMenu.SetActive(false);
@@ -40,11 +44,11 @@ public class modelViewer : MonoBehaviour
         {              
             bounds.Encapsulate(r.bounds);
         }
-        Debug.Log(bounds);
+       // Debug.Log(bounds);
         float cameraDistance = 0.50f; // Constant factor
         Vector3 objectSizes = bounds.max - bounds.min;
         float objectSize = Mathf.Max(objectSizes.x, objectSizes.y, objectSizes.z);
-        Debug.Log(objectSize);
+       // Debug.Log(objectSize);
         float cameraView = 2.0f * Mathf.Tan(0.5f * Mathf.Deg2Rad * cam.fieldOfView); // Visible height 1 meter in front
         float distance = cameraDistance * objectSize / cameraView; // Combined wanted distance from the object
         distance += 0.5f * objectSize; // Estimated offset from the center to the outside of the object
@@ -101,7 +105,7 @@ public class modelViewer : MonoBehaviour
     }
 
     void zoom(float z){
-        Debug.Log(cam.orthographic);
+        //Debug.Log(cam.orthographic);
         if (cam.orthographic)
         {
             if ( (z < 0 && cam.orthographicSize > 0.001f) || ( z > 0 && cam.orthographicSize < 1))
@@ -112,7 +116,7 @@ public class modelViewer : MonoBehaviour
         else
         {
             var dist = Vector3.Distance(cam.transform.position, loadedModel.transform.position);
-            Debug.Log(dist);
+           // Debug.Log(dist);
             if ((z < 0 && dist > 0.15f) || (z > 0 && dist < 10))
             {
                 transform.Translate(Vector3.back * z);
@@ -134,13 +138,15 @@ public class modelViewer : MonoBehaviour
             virtualPhoto.Apply();
             byte[] bytes = virtualPhoto.EncodeToPNG();
             System.IO.File.WriteAllBytes(path, bytes);
-            Debug.Log("saved to " + path);
+            //Debug.Log("saved to " + path);
         }
     }
 
     int oldButtonValue = 0;
+
     public void receiveData(string [] input){
-        Debug.Log(input[0]);
+        string toLog="";
+        //Debug.Log(input[0]);
         int joystickX = Int32.Parse(input[0]);
         int joystickY = Int32.Parse(input[1]);
         int triggerValue = Int32.Parse(input[3]);
@@ -148,14 +154,17 @@ public class modelViewer : MonoBehaviour
 
         if (buttonValue-oldButtonValue == 1){
             radialMenu.SetActive(!radialMenu.activeSelf);
+            toLog="Button pressed :"+radialMenu.activeSelf + DateTime.Now;
         }
         if (!radialMenu.activeSelf){
             if (triggerValue == 1){
                 if (joystickY > 600){
                     zoom(-zoomFactor);
+                    toLog = "Zoom : " + (-zoomFactor);
                 }
                 else if (joystickY < 400){
                     zoom(zoomFactor);
+                    toLog = "Zoom : " + (zoomFactor);
                 }
             }else{
                 if (joystickY > 600){
@@ -170,11 +179,21 @@ public class modelViewer : MonoBehaviour
                 if (joystickX < 400){
                     rotate(new Vector2(5f,0));
                 }
+                toLog = "Rotate : X " + joystickX + ", Y " + joystickY;
             }
 
         } else {
             radialMenuScript.changeJoyValue(new Vector2(joystickX, joystickY));
+            toLog = "Radial Menu : X "+joystickX + ", Y " + joystickY;
+            if (triggerValue == 1){
+                //select value
+                toLog = "Radial Select : X "+joystickX + ", Y " + joystickY;
+                //do math to figure out which value was selected, or print this from radial script
+            }
         }
         oldButtonValue = buttonValue;
+        if(toLog != "") LogManager.writeToLog(toLog + " - "+ DateTime.Now);
+        
+
     }
 }

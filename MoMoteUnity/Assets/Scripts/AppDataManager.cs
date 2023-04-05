@@ -6,6 +6,7 @@ using System.Linq;
 using SimpleFileBrowser;
 using UnityEngine;
 
+
 public class AppDataManager : MonoBehaviour
 {
     // Create a field of this class for the file.
