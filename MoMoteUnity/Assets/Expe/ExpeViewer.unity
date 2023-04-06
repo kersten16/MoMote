@@ -217,7 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631814c19a5da57749ca9e888bf01652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participant: 
+  participant: 0
+  cam: {fileID: 0}
   cube: {fileID: 286258714069483171}
   Left: {fileID: 286258714069483174}
   Right: {fileID: 286258714069483175}
@@ -592,6 +593,22 @@ PrefabInstance:
     - target: {fileID: 11405222, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
       propertyPath: useGamepad
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499586, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499586, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11705858}
+    - target: {fileID: 11499586, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SendMessage
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499586, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.Component, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 22401190, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
       propertyPath: m_Pivot.x
@@ -1265,7 +1282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631814c19a5da57749ca9e888bf01652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participant: 
+  participant: 0
+  cam: {fileID: 0}
   cube: {fileID: 0}
   Left: {fileID: 0}
   Right: {fileID: 0}

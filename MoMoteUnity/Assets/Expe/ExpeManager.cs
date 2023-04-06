@@ -9,6 +9,7 @@ public class ExpeManager : MonoBehaviour
     public int participant;
 
     public Camera cam;
+    public RMF_RadialMenu radialMenuScript;
 
     public GameObject cube;
     public TextMeshPro Left;
@@ -48,7 +49,7 @@ public class ExpeManager : MonoBehaviour
 
         // init
         resetCubeTransform();
-        setOrthoSize(currentTrial.Zoom);
+        setOrthoSize(currentTrial.Z);
         currentLetter = Letters[UnityEngine.Random.Range(0, 4)];
         setLetterOnCurrFace(currentLetter);
     }
@@ -67,7 +68,7 @@ public class ExpeManager : MonoBehaviour
         Bottom.SetText("");
         Back.SetText("");
 
-        switch (currentTrial.Face)
+        switch (currentTrial.F)
         {
             case "Left":
                 Left.SetText(l);
@@ -89,7 +90,8 @@ public class ExpeManager : MonoBehaviour
         }
     }
 
-    void buttonCLicked(string name){
+    public void buttonCLicked(){
+        string name = radialMenuScript.elements[radialMenuScript.index].gameObject.name;
         if (name == currentLetter){
             // log trial info & Time.time - startTime & errorNb
             nextTrial();
@@ -97,7 +99,7 @@ public class ExpeManager : MonoBehaviour
             errorNb++;
             // reset trial with a new letter
             resetCubeTransform();
-            setOrthoSize(currentTrial.Zoom);
+            setOrthoSize(currentTrial.Z);
             currentLetter = Letters[UnityEngine.Random.Range(0, 4)];
             setLetterOnCurrFace(currentLetter);
         }
@@ -114,7 +116,7 @@ public class ExpeManager : MonoBehaviour
             currentLetter = Letters[UnityEngine.Random.Range(0, 4)];
             // set text of current face to random letter
             resetCubeTransform();
-            setOrthoSize(currentTrial.Zoom);
+            setOrthoSize(currentTrial.Z);
             setLetterOnCurrFace(currentLetter);
             startTime = Time.time;
         } else {
