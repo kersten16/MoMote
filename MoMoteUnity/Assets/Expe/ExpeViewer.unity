@@ -188,10 +188,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 988002710}
   loadedModel: {fileID: 286258714069483171}
-  radialMenu: {fileID: 1685957823}
+  radialMenu: {fileID: 847481833}
   radialMenuScript: {fileID: 847481832}
   ESystem: {fileID: 1813620578}
-  zoomFactor: 0.001
+  zoomFactor: 10
 --- !u!114 &11705857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -685,12 +685,18 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 847481831}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 847481833}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 596c16ceda382094bb544ea45272cec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &847481833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 172674, guid: 69988eeaf22db50428892b9cf8812ad4,
+    type: 3}
+  m_PrefabInstance: {fileID: 847481831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &988002706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,3 +1197,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631814c19a5da57749ca9e888bf01652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  participant: 
+  cube: {fileID: 0}
+  Left: {fileID: 0}
+  Right: {fileID: 0}
+  Bottom: {fileID: 0}
+  Top: {fileID: 0}
+  Back: {fileID: 0}

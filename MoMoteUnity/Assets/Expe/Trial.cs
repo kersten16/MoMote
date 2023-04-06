@@ -6,5 +6,10 @@ using UnityEngine;
 public class Trial
 {
   public string Face;
-  public string Letter;
+  public string Zoom;
+
+  Trial(string f, string z){
+    Face = f;
+    Zoom = z;
+  }
 }
