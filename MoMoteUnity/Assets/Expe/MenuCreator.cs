@@ -15,18 +15,17 @@ public class MenuCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var reader = new StreamReader(@"C:\Users\Kersten\Desktop\designProject\MoMote\MoMoteUnity\Assets\Resources\experiment.csv");
-    
-        var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        
-            var training = new Trial(1,1,0,"Right","Far");
+        using (var reader = new StreamReader(@"C:\Users\Kersten\Desktop\designProject\MoMote\MoMoteUnity\Assets\Resources\experiment.csv"))
+        using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+        {
+            List<Trial> training = {new Trial(1,1,0,"Right","Far")};
             var trainParticipant =new Participant(0, training);
             ParticipantList.Add(trainParticipant);
             var records = csv.GetRecords<Trial>();
             for (int i = 1; i<= records.Length; i++){
                 ParticipantList.Add(new Participant(i,records.GetRange(numTrials*(i-1),numTrials)));
             }
-
+        }
         
     }
         // read from csv for participant
