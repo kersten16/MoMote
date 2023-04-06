@@ -61,6 +61,9 @@ public class modelViewer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.Space)){
+            loaded = true;
+        }
         transform.position = Vector3.zero;
         if (loaded){
             // todo get normal between previous input and current input
