@@ -146,6 +146,7 @@ public class modelViewer : MonoBehaviour
     }
 
     int oldButtonValue = 0;
+    int oldTriggerValue = 0;
 
     public void receiveData(string [] input){
         string toLog="";
@@ -188,13 +189,15 @@ public class modelViewer : MonoBehaviour
         } else {
             radialMenuScript.changeJoyValue(new Vector2(joystickX, joystickY));
             toLog = "Radial Menu : X "+joystickX + ", Y " + joystickY;
-            if (triggerValue == 1){
+            if (triggerValue-oldTriggerValue == 1){
                 //select value
+                radialMenuScript.elements[radialMenuScript.index].button.onClick.Invoke();
                 toLog = "Radial Select : X "+joystickX + ", Y " + joystickY;
                 //do math to figure out which value was selected, or print this from radial script
             }
         }
         oldButtonValue = buttonValue;
+        oldTriggerValue = triggerValue;
         if(toLog != "") LogManager.writeToLog(toLog + " - "+ DateTime.Now);
         
 
