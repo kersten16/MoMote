@@ -4,6 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using CsvHelper;
+using System.Globalization;
 // using Participant;
 // using Trial;
 
@@ -12,17 +13,22 @@ public class MenuCreator : MonoBehaviour
     public string modelPath;
     public List<Participant> ParticipantList;
     public int numTrials = 15;
+    public pointerScroller ps;
+    public GameObject content;
+	public GameObject menuItemPrefab;
+	public ArduinoInput arduinoInput;
+
     // Start is called before the first frame update
     void Start()
     {
         using (var reader = new StreamReader(@"C:\Users\Kersten\Desktop\designProject\MoMote\MoMoteUnity\Assets\Resources\experiment.csv"))
         using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
-            List<Trial> training = {new Trial(1,1,0,"Right","Far")};
+            List<Trial> training = new List<Trial> (){new Trial(1,1,0,"Right","Far")};
             var trainParticipant =new Participant(0, training);
             ParticipantList.Add(trainParticipant);
-            var records = csv.GetRecords<Trial>();
-            for (int i = 1; i<= records.Length; i++){
+            var records = csv.GetRecords<Trial>().ToList();
+            for (int i = 1; i<= records.Count; i++){
                 ParticipantList.Add(new Participant(i,records.GetRange(numTrials*(i-1),numTrials)));
             }
         }
@@ -46,6 +52,37 @@ public class MenuCreator : MonoBehaviour
 			ps.selectObj();
 		}
 	}
+
+    	public Sprite LoadNewSprite(string FilePath, float PixelsPerUnit = 100.0f)
+	{
+
+		// Load a PNG or JPG image from disk to a Texture2D, assign this texture to a new sprite and return its reference
+
+		Texture2D SpriteTexture = LoadTexture(FilePath);
+		Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0, 0), PixelsPerUnit);
+
+		return NewSprite;
+	}
+
+    public Texture2D LoadTexture(string FilePath)
+	{
+
+		// Load a PNG or JPG file from disk to a Texture2D
+		// Returns null if load fails
+
+		Texture2D Tex2D;
+		byte[] FileData;
+
+		if (File.Exists(FilePath))
+		{
+			FileData = File.ReadAllBytes(FilePath);
+			Tex2D = new Texture2D(2, 2);           // Create new "empty" texture
+			if (Tex2D.LoadImage(FileData))           // Load the imagedata into the texture (size is set automatically)
+				return Tex2D;                 // If data = readable -> return texture
+		}
+		return null;                     // Return null if load failed
+	}
+
 }
 
 
