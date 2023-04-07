@@ -20,7 +20,7 @@ public class modelViewer : MonoBehaviour
     public AsyncOperation unloader;
     Bounds bounds;
     public bool loaded = false;
-    public float zoomFactor = 10f;
+    public float zoomFactor = 100f;
 
     Texture2D virtualPhoto;
     private string modelName;
@@ -118,7 +118,7 @@ public class modelViewer : MonoBehaviour
         {
             if ( (z < 0 && cam.orthographicSize > 0.001f) || ( z > 0 && cam.orthographicSize < 30))
             {
-                cam.orthographicSize += z;
+                cam.orthographicSize += z* (Mathf.Max(cam.orthographicSize/30,.1f));
             }
         }
         else
