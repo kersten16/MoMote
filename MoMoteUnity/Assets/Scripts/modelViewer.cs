@@ -20,8 +20,8 @@ public class modelViewer : MonoBehaviour
     public AsyncOperation unloader;
     Bounds bounds;
     public bool loaded = false;
-    public float zoomFactor = 100f;
-
+    public float zoomFactor = 10f;
+    public int isZoom = 0;
     Texture2D virtualPhoto;
     private string modelName;
     private int sqr = 256;
@@ -67,6 +67,16 @@ public class modelViewer : MonoBehaviour
         }
         transform.position = Vector3.zero;
         if (loaded){
+            switch(isZoom) 
+                {
+                case -1:
+                    zoom(zoomFactor);
+                    break;
+                case 1:
+                    zoom(-zoomFactor);
+                    break;
+                }
+
             // todo get normal between previous input and current input
             // todo rotation angle = delta between previous input and current input
             //rotate(new Vector3(1,1,1), 20*Time.deltaTime);
@@ -105,6 +115,7 @@ public class modelViewer : MonoBehaviour
             menuLoader.loadMenu();
         }
 
+
     }
 
     void rotate(Vector2 joystick){
@@ -113,12 +124,12 @@ public class modelViewer : MonoBehaviour
     }
 
     void zoom(float z){
-        //Debug.Log(cam.orthographic);
+        Debug.Log(z);
         if (cam.orthographic)
         {
-            if ( (z < 0 && cam.orthographicSize > 0.001f) || ( z > 0 && cam.orthographicSize < 30))
+            if ( (z < 0 && (cam.orthographicSize-(z*5)) >= 0.001f) || ( z > 0 && (cam.orthographicSize+(z*5))<= 30))
             {
-                cam.orthographicSize += z* (Mathf.Max(cam.orthographicSize/30,.1f));
+                cam.orthographicSize += z*5;
             }
         }
         else
@@ -168,14 +179,20 @@ public class modelViewer : MonoBehaviour
         if (!radialMenu.activeSelf){
             if (triggerValue == 1){
                 if (joystickY > 600){
-                    zoom(-zoomFactor);
-                    toLog = "Zoom : " + (-zoomFactor);
+                    isZoom=1;
+                    //zoom(zoomFactor);
+                    toLog = "Zoom : " + isZoom;
                 }
                 else if (joystickY < 400){
-                    zoom(zoomFactor);
-                    toLog = "Zoom : " + (zoomFactor);
+                    isZoom = -1;
+                    //zoom(zoomFactor);
+                    toLog = "Zoom : " + isZoom;
+                }
+                else{
+                    isZoom=0;
                 }
             }else{
+                isZoom=0;
                 if (joystickY > 600){
                     rotate(new Vector2(0,-5f));
                 }
