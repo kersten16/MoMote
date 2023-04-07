@@ -28,6 +28,7 @@ public class MenuCreator : MonoBehaviour
             var trainParticipant =new Participant(0, training);
             ParticipantList.Add(trainParticipant);
             var records = csv.GetRecords<Trial>().ToList();
+			Debug.Log ( records[0]);
             for (int i = 1; i<= records.Count/numTrials; i++){
                 ParticipantList.Add(new Participant(i,records.GetRange(numTrials*(i-1),numTrials)));
             }
@@ -46,6 +47,8 @@ public class MenuCreator : MonoBehaviour
 			childObject.transform.SetParent(content.transform);
 			childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
 			childObject.GetComponent<ExpeLoader>().arduinoInput = arduinoInput;
+			Debug.Log(participant.Trials[0].TrialID);
+
 			childObject.GetComponent<ExpeLoader>().participant = participant;
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = Resources.Load<Sprite>(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = LoadNewSprite(Application.persistentDataPath + "/" + "something.png");

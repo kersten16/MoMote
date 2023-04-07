@@ -24,7 +24,7 @@ public class ExpeManager : MonoBehaviour
     int errorNb = 0;
     float startTime;
 
-    public List<Trial> trials;
+    public List<Trial> trials = new List<Trial>();
 
     Trial currentTrial;
 
@@ -36,6 +36,7 @@ public class ExpeManager : MonoBehaviour
     void Start()
     {
         trials = participant.Trials;
+        Debug.Log(participant.Trials);
         
         currentTrial = trials[0];
 
@@ -49,7 +50,7 @@ public class ExpeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("managing expe");
+       // Debug.Log("managing expe");
     }
 
     void setLetterOnCurrFace(string l){

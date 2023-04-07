@@ -10,7 +10,7 @@ public class ExpeLoader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log(participant.Trials[0]);
     }
 
     // Update is called once per frame
