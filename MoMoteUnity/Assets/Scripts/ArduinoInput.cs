@@ -79,10 +79,10 @@ public class ArduinoInput : MonoBehaviour
     {
         receivedString = data_stream.ReadLine();
         datas = receivedString.Split(',');
-        if( SceneManager.GetActiveScene().name == "MenuScene"){
+        if( SceneManager.GetActiveScene().name == "ExpeMenu"){
             messageListener.GetComponent<pointerScroller>().receiveData(datas);
 
-        }else if (SceneManager.GetActiveScene().name == "ModelViewer"){
+        }else if (SceneManager.GetActiveScene().name == "ExpeViewer"){
             Debug.Log("in model viewer");
             messageListener.GetComponent<modelViewer>().receiveData(datas);
         }

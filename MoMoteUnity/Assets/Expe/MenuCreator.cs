@@ -16,7 +16,7 @@ public class MenuCreator : MonoBehaviour
     public pointerScroller ps;
     public GameObject content;
 	public GameObject menuItemPrefab;
-	//public ArduinoInput arduinoInput;
+	//public GameObject NotDestroyed;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +48,7 @@ public class MenuCreator : MonoBehaviour
 			//childObject.GetComponent<modelLoader>().modelPath = modelPath;
 			childObject.transform.SetParent(content.transform);
 			childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
-			//childObject.GetComponent<ExpeLoader>().arduinoInput = arduinoInput;
+			childObject.GetComponent<ExpeLoader>().NotDestroyed = this.gameObject;
 			Debug.Log(participant.Trials[0].TrialID);
 
 			childObject.GetComponent<ExpeLoader>().participant = participant;

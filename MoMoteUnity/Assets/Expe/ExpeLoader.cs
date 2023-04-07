@@ -9,7 +9,7 @@ public class ExpeLoader : MonoBehaviour
     public Participant participant;
     public TextMeshProUGUI modelTextMesh;
 
-    //public ArduinoInput arduinoInput;
+    public GameObject NotDestroyed;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +55,8 @@ public class ExpeLoader : MonoBehaviour
         GameObject newSceneCam = SceneManager.GetActiveScene().GetRootGameObjects()[0];
         newSceneCam.GetComponent<ExpeManager>().participant = participant;
         newSceneCam.GetComponent<ExpeManager>().setExpe();
-        //arduinoInput.messageListener = newSceneCam;
+        NotDestroyed.GetComponent<ArduinoInput>().messageListener = newSceneCam;
+        NotDestroyed.GetComponent<LogManager>().StartExperiment(participant.ID);
 
         SceneManager.UnloadSceneAsync(unload);
     }
