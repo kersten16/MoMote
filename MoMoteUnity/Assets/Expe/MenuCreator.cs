@@ -11,7 +11,7 @@ using System.Globalization;
 public class MenuCreator : MonoBehaviour
 {
     public string modelPath;
-    public List<Participant> ParticipantList;
+    public List<Participant> ParticipantList= new List<Participant>();
     public int numTrials = 15;
     public pointerScroller ps;
     public GameObject content;
@@ -32,7 +32,7 @@ public class MenuCreator : MonoBehaviour
                 ParticipantList.Add(new Participant(i,records.GetRange(numTrials*(i-1),numTrials)));
             }
         }
-        
+        setupMenu(ParticipantList);
     }
         // read from csv for participant
         //generate object for each participant
@@ -48,7 +48,7 @@ public class MenuCreator : MonoBehaviour
 			childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
 			childObject.GetComponent<modelLoader>().arduinoInput = arduinoInput;
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = Resources.Load<Sprite>(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
-			childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = LoadNewSprite(Application.persistentDataPath + "/" + "something.png");
+			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = LoadNewSprite(Application.persistentDataPath + "/" + "something.png");
 			ps.selectObj();
 		}
 	}

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -957,7 +957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelPath: 
   numTrials: 15
-  ps: {fileID: 0}
+  ps: {fileID: 1217113081}
   content: {fileID: 1305257653}
   menuItemPrefab: {fileID: 3534374838611525535, guid: 23e413dd16831a7309bbba621ba14d1c,
     type: 3}
