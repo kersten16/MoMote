@@ -6,7 +6,7 @@ using TMPro;
 
 public class ExpeManager : MonoBehaviour
 {
-    public int participant;
+    public Participant participant;
 
     public Camera cam;
     public RMF_RadialMenu radialMenuScript;
@@ -24,7 +24,7 @@ public class ExpeManager : MonoBehaviour
     int errorNb = 0;
     float startTime;
 
-    Trial[] trials;
+    public List<Trial> trials;
 
     Trial currentTrial;
 
@@ -35,16 +35,8 @@ public class ExpeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // read csv
-        // var fileData = System.IO.File.ReadAllText("../Resources/experiment.csv");
-        // var lines = fileData.Split("\n"[0]);
-        // //var lineData = (lines[0].Trim()).Split(","[0]);
-        // foreach(string line in lines){
-        //     var l = line.Split(",");
-        //     if (Int32.Parse(l[1]) == participant){
-        //         trials.Add(new Trial(l[4],l[5]));
-        //     }
-        // }
+        trials = participant.Trials;
+        
         currentTrial = trials[0];
 
         // init
@@ -57,7 +49,7 @@ public class ExpeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("managing expe");
     }
 
     void setLetterOnCurrFace(string l){
@@ -67,6 +59,7 @@ public class ExpeManager : MonoBehaviour
         Top.SetText("");
         Bottom.SetText("");
         Back.SetText("");
+        Debug.Log("setting letter to " + l);
 
         switch (currentTrial.F)
         {
@@ -95,7 +88,9 @@ public class ExpeManager : MonoBehaviour
         if (name == currentLetter){
             // log trial info & Time.time - startTime & errorNb
             nextTrial();
+            Debug.Log("trial success");
         } else {
+            Debug.Log("trial failed");
             errorNb++;
             // reset trial with a new letter
             resetCubeTransform();
@@ -109,7 +104,7 @@ public class ExpeManager : MonoBehaviour
 
     void nextTrial(){
         trialNb++;
-        if (trialNb < trials.Length){
+        if (trialNb < trials.Count){
             errorNb = 0;
             // set text of current face to ""
             currentTrial = trials[trialNb];

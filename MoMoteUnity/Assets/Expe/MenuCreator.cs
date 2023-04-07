@@ -43,10 +43,10 @@ public class MenuCreator : MonoBehaviour
 		{
 			GameObject childObject = Instantiate(menuItemPrefab) as GameObject;
 			//childObject.GetComponent<modelLoader>().modelPath = modelPath;
-			childObject.GetComponent<modelLoader>().modelName = "Participant " + participant.ID;//participant number;
 			childObject.transform.SetParent(content.transform);
 			childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
-			childObject.GetComponent<modelLoader>().arduinoInput = arduinoInput;
+			childObject.GetComponent<ExpeLoader>().arduinoInput = arduinoInput;
+			childObject.GetComponent<ExpeLoader>().participant = participant;
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = Resources.Load<Sprite>(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = LoadNewSprite(Application.persistentDataPath + "/" + "something.png");
 			ps.selectObj();

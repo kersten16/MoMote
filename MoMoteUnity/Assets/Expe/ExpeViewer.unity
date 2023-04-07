@@ -217,8 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631814c19a5da57749ca9e888bf01652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participant: 0
-  cam: {fileID: 0}
+  cam: {fileID: 988002710}
+  radialMenuScript: {fileID: 847481832}
   cube: {fileID: 286258714069483171}
   Left: {fileID: 286258714069483174}
   Right: {fileID: 286258714069483175}
@@ -1282,8 +1282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631814c19a5da57749ca9e888bf01652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  participant: 0
   cam: {fileID: 0}
+  radialMenuScript: {fileID: 0}
   cube: {fileID: 0}
   Left: {fileID: 0}
   Right: {fileID: 0}
