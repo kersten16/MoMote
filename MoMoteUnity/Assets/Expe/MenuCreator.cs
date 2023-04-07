@@ -16,12 +16,14 @@ public class MenuCreator : MonoBehaviour
     public pointerScroller ps;
     public GameObject content;
 	public GameObject menuItemPrefab;
-	public ArduinoInput arduinoInput;
+	//public ArduinoInput arduinoInput;
 
     // Start is called before the first frame update
     void Start()
     {
-        using (var reader = new StreamReader(@"C:\Users\Kersten\Desktop\designProject\MoMote\MoMoteUnity\Assets\Resources\experiment.csv"))
+        DontDestroyOnLoad(this.gameObject);
+
+        using (var reader = new StreamReader(@"Assets/Resources/experiment.csv"))
         using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
             List<Trial> training = new List<Trial> (){new Trial(1,1,0,"Right","Far")};
@@ -46,7 +48,7 @@ public class MenuCreator : MonoBehaviour
 			//childObject.GetComponent<modelLoader>().modelPath = modelPath;
 			childObject.transform.SetParent(content.transform);
 			childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
-			childObject.GetComponent<ExpeLoader>().arduinoInput = arduinoInput;
+			//childObject.GetComponent<ExpeLoader>().arduinoInput = arduinoInput;
 			Debug.Log(participant.Trials[0].TrialID);
 
 			childObject.GetComponent<ExpeLoader>().participant = participant;

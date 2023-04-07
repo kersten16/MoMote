@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbc9bc28c83eeff49eeb6e2df4b26c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arduinoInput: {fileID: 0}
+  modelTextMesh: {fileID: 5181974303193220673}
 --- !u!1 &6350811796428302784
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,11 +345,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
+  m_fontSize: 72
   m_fontSizeBase: 28
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 2

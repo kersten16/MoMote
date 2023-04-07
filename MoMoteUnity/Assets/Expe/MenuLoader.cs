@@ -17,8 +17,8 @@ public class MenuLoader : MonoBehaviour
         
     }
 
-    void loadMenu(){
-        StartCoroutine(LoadScene("MenuScene", "ModelViewer"));
+    public void loadMenu(){
+        StartCoroutine(LoadScene("ExpeMenu", "ExpeViewer"));
     }
 
     IEnumerator LoadScene(string name, string unload)

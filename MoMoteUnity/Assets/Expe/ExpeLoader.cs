@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ExpeLoader : MonoBehaviour
 {
     public Participant participant;
-    public ArduinoInput arduinoInput;
+    public TextMeshProUGUI modelTextMesh;
+
+    //public ArduinoInput arduinoInput;
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(participant.Trials[0]);
+        modelTextMesh.SetText("Participant " + participant.ID);
+        //Debug.Log(participant.Trials[0]);
     }
 
     // Update is called once per frame
@@ -29,7 +33,8 @@ public class ExpeLoader : MonoBehaviour
         // This is particularly good for creating loading screens.
         // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
         // a sceneBuildIndex of 1 as shown in Build Settings.
-
+        Debug.Log(participant.Trials[0]);
+        
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
         asyncLoad.allowSceneActivation = false;
 
@@ -47,10 +52,10 @@ public class ExpeLoader : MonoBehaviour
             yield return null;
         }
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(name));
-        
         GameObject newSceneCam = SceneManager.GetActiveScene().GetRootGameObjects()[0];
         newSceneCam.GetComponent<ExpeManager>().participant = participant;
-        arduinoInput.messageListener = newSceneCam;
+        newSceneCam.GetComponent<ExpeManager>().setExpe();
+        //arduinoInput.messageListener = newSceneCam;
 
         SceneManager.UnloadSceneAsync(unload);
     }

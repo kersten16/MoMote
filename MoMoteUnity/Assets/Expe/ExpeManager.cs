@@ -9,7 +9,10 @@ public class ExpeManager : MonoBehaviour
     public Participant participant;
 
     public Camera cam;
-    public RMF_RadialMenu radialMenuScript;
+    public GameObject camParent;
+    public modelViewer modelViewer;
+    public GameObject finalMessage;
+
 
     public GameObject cube;
     public TextMeshPro Left;
@@ -23,6 +26,7 @@ public class ExpeManager : MonoBehaviour
     int trialNb = 0;
     int errorNb = 0;
     float startTime;
+    bool running = false;
 
     public List<Trial> trials = new List<Trial>();
 
@@ -35,8 +39,12 @@ public class ExpeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
+
+    public void setExpe(){
+        Debug.Log(participant.Trials[0].ParticipantID);
         trials = participant.Trials;
-        Debug.Log(participant.Trials);
         
         currentTrial = trials[0];
 
@@ -45,6 +53,9 @@ public class ExpeManager : MonoBehaviour
         setOrthoSize(currentTrial.Z);
         currentLetter = Letters[UnityEngine.Random.Range(0, 4)];
         setLetterOnCurrFace(currentLetter);
+        startTime = Time.time;
+        modelViewer.loaded = true;
+        running = true;
     }
 
     // Update is called once per frame
@@ -84,12 +95,16 @@ public class ExpeManager : MonoBehaviour
         }
     }
 
-    public void buttonCLicked(){
-        string name = radialMenuScript.elements[radialMenuScript.index].gameObject.name;
+    public void buttonCLicked(string name){
         if (name == currentLetter){
+            if (running){
+                float finalTime = Time.time-startTime;
+                LogManager.writeToCsv("Momote," + currentTrial.TrialID + "," + currentTrial.ParticipantID + "," + currentTrial.Block1 + "," + currentTrial.F + "," + currentTrial.Z + "," + finalTime + "," + errorNb);
+            }
+
             // log trial info & Time.time - startTime & errorNb
-            nextTrial();
             Debug.Log("trial success");
+            nextTrial();
         } else {
             Debug.Log("trial failed");
             errorNb++;
@@ -121,24 +136,26 @@ public class ExpeManager : MonoBehaviour
     }
 
     void endTrials(){
-
+        running = false;
+        modelViewer.loaded = false;
+        finalMessage.SetActive(true);
     }
 
     void setOrthoSize(string z){
-        int zoom = 2;
+        float zoom = 12;
         if (z == "Close"){
-            zoom = 1;
+            zoom = 0.1f;
         } else if(z == "Normal"){
-            zoom = 2;
+            zoom = 12;
         } else if (z == "Far"){
-            zoom = 3;
+            zoom = 30;
         }
         cam.orthographicSize = zoom;
     }
 
     void resetCubeTransform(){
         cube.transform.position = Vector3.zero;
-        cube.transform.Rotate(-cube.transform.rotation.eulerAngles);
+        camParent.transform.eulerAngles = Vector3.zero;
     }
 
     // on menu, open to define the participant

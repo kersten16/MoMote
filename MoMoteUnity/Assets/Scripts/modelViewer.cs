@@ -15,10 +15,11 @@ public class modelViewer : MonoBehaviour
     public GameObject loadedModel;
     public GameObject radialMenu;
     public RMF_RadialMenu radialMenuScript;
+    public MenuLoader menuLoader;
     public EventSystem ESystem;
     public AsyncOperation unloader;
     Bounds bounds;
-    bool loaded = false;
+    public bool loaded = false;
     public float zoomFactor = 10f;
 
     Texture2D virtualPhoto;
@@ -99,6 +100,10 @@ public class modelViewer : MonoBehaviour
                 StartCoroutine(TakeSnapshot(true));
             }
         }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            menuLoader.loadMenu();
+        }
 
     }
 
@@ -111,7 +116,7 @@ public class modelViewer : MonoBehaviour
         //Debug.Log(cam.orthographic);
         if (cam.orthographic)
         {
-            if ( (z < 0 && cam.orthographicSize > 0.001f) || ( z > 0 && cam.orthographicSize < 1))
+            if ( (z < 0 && cam.orthographicSize > 0.001f) || ( z > 0 && cam.orthographicSize < 30))
             {
                 cam.orthographicSize += z;
             }
@@ -193,6 +198,7 @@ public class modelViewer : MonoBehaviour
                 //select value
                 radialMenuScript.elements[radialMenuScript.index].button.onClick.Invoke();
                 toLog = "Radial Select : X "+joystickX + ", Y " + joystickY;
+                radialMenu.SetActive(!radialMenu.activeSelf);
                 //do math to figure out which value was selected, or print this from radial script
             }
         }
