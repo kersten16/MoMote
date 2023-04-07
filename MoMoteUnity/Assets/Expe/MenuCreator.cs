@@ -28,7 +28,7 @@ public class MenuCreator : MonoBehaviour
             var trainParticipant =new Participant(0, training);
             ParticipantList.Add(trainParticipant);
             var records = csv.GetRecords<Trial>().ToList();
-            for (int i = 1; i<= records.Count; i++){
+            for (int i = 1; i<= records.Count/numTrials; i++){
                 ParticipantList.Add(new Participant(i,records.GetRange(numTrials*(i-1),numTrials)));
             }
         }
