@@ -26,10 +26,10 @@ public class pointerScroller : MonoBehaviour
     public void selectObj(){
         int count = Content.transform.childCount;
         float value = this.gameObject.GetComponent<Scrollbar>().value;
-        if (value >= 1){
+        if (value > 1){
             ESystem.SetSelectedGameObject(Content.transform.GetChild(count-1).gameObject);
             //Debug.Log("selected 0");
-        } else if (value <= 0){
+        } else if (value < 0){
             ESystem.SetSelectedGameObject(Content.transform.GetChild(0).gameObject);
             //Debug.Log("selected last");
         } else {
@@ -57,11 +57,11 @@ public class pointerScroller : MonoBehaviour
         float contentHeight = ScrollView.content.sizeDelta.y;
         int joystickY = Int32.Parse(input[1]);
         if (joystickY > 600){
-            ScrollView.verticalNormalizedPosition += (20/contentHeight);
+            ScrollView.verticalNormalizedPosition += 10*(20/contentHeight);
             toLog = "Scroll Down: "+(ScrollView.verticalNormalizedPosition);
         }
         else if (joystickY < 400){
-            ScrollView.verticalNormalizedPosition -= (20/contentHeight);
+            ScrollView.verticalNormalizedPosition -= 10*(20/contentHeight);
             toLog = "Scroll Up: "+(ScrollView.verticalNormalizedPosition);
         }
         if (currentTriggerPress-oldTriggerPress == 1){

@@ -22,8 +22,8 @@ public class LogManager : MonoBehaviour
     {
         participantID = ID;
         if (participantID == 0) return;
-        FILE_PATH = "Assets/Logs/input_log_"+participantID+".txt";
-        CSV_PATH = "Assets/Logs/experiment_log"+participantID+".csv";
+        FILE_PATH = "Assets/Logs/InputLog_"+participantID+"_"+DateTime.Now.ToString("MMMd_HHmm")+".txt";
+        CSV_PATH = "Assets/Logs/ExperimentLog_"+participantID+"_"+DateTime.Now.ToString("MMMd_HHmm")+".csv";
         logWriter = new StreamWriter(FILE_PATH, true);
         logWriter.WriteLine("App Launched " + DateTime.Now);
         logWriter.Close();
