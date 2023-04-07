@@ -9,11 +9,13 @@ public class ExpeLoader : MonoBehaviour
     public Participant participant;
     public TextMeshProUGUI modelTextMesh;
 
-    public GameObject NotDestroyed;
+    GameObject NotDestroyed;
     // Start is called before the first frame update
     void Start()
     {
         modelTextMesh.SetText("Participant " + participant.ID);
+        NotDestroyed = GameObject.Find("ArduinoReceiver");
+        Debug.Log(NotDestroyed);
         //Debug.Log(participant.Trials[0]);
     }
 
