@@ -11,7 +11,6 @@ public class pointerScroller : MonoBehaviour
     public GameObject Content;
     public ScrollRect ScrollView;
     public EventSystem ESystem;
-    public ArduinoInput arduinoInput;
     // Start is called before the first frame update
     void Start()
     {  
