@@ -61,7 +61,7 @@ public class ExpeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // Debug.Log("managing expe");
+       
     }
 
     void setLetterOnCurrFace(string l){
@@ -96,6 +96,7 @@ public class ExpeManager : MonoBehaviour
     }
 
     public void buttonCLicked(string name){
+        Debug.Log("test I pressed a button lol");
         if (name == currentLetter){
             if (running){
                 long finalTime = DateTime.Now.Ticks-startTime;
