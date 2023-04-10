@@ -409,7 +409,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -892,10 +892,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a09885b11f49014e98fdaad6cebdf68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelPath: 
   ParticipantList: []
   numTrials: 15
-  ps: {fileID: 1217113081}
   content: {fileID: 1305257653}
   menuItemPrefab: {fileID: 3534374838611525535, guid: 23e413dd16831a7309bbba621ba14d1c,
     type: 3}

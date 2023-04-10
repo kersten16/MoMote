@@ -4,22 +4,44 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using CsvHelper;
+using System;
 using System.Globalization;
 // using Participant;
 // using Trial;
 
 public class MenuCreator : MonoBehaviour
 {
-    public string modelPath;
+    //public string modelPath;
     public List<Participant> ParticipantList= new List<Participant>();
     public int numTrials = 15;
-    public pointerScroller ps;
+   // public pointerScroller ps;
     public GameObject content;
 	public GameObject menuItemPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
+		TextAsset dataset = Resources.Load("experiment") as TextAsset;
+		Debug.Log(dataset);
+		var text = dataset.text;
+		Debug.Log(text);
+		// Debug.Log(lines);
+		parseCSV(text.Split('\n'));
+		setupMenu(ParticipantList);
+		// TextAsset file = Resources.Load<TextAsset>("experiment.csv");
+		// if (file != null){
+		// 		using(var reader = new StreamReader(new file))
+		// 		using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture)){
+		// 		List<Trial> training = new List<Trial> (){new Trial(1,1,0,"Right","Far")};
+		// 		var trainParticipant =new Participant(0, training);
+		// 		ParticipantList.Add(trainParticipant);
+		// 		var records = csv.GetRecords<Trial>().ToList();
+		// 		Debug.Log ( records[0]);
+		// 		for (int i = 1; i<= records.Count/numTrials; i++){
+		// 			ParticipantList.Add(new Participant(i,records.GetRange(numTrials*(i-1),numTrials)));
+		// 		}
+		// 	}
+		// }
 		//string pathFile = Application.streamingAssetsPath + "/experiment.csv";
 		// StartCoroutine(getPath(pathFile));
         // using (var reader = new StreamReader(@"Assets/Resources/experiment.csv"))
@@ -40,7 +62,7 @@ public class MenuCreator : MonoBehaviour
 		// for (int i = 1; i<= 15; i++){
 		// 	ParticipantList.Add(new Participant(i,training));
 		// }
-        setupMenu(ParticipantList);
+        
     }
         // read from csv for participant
         //generate object for each participant
@@ -71,7 +93,7 @@ public class MenuCreator : MonoBehaviour
 			childObject.GetComponent<ExpeLoader>().participant = participant;
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = Resources.Load<Sprite>(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = LoadNewSprite(Application.persistentDataPath + "/" + "something.png");
-			ps.selectObj();
+			//ps.selectObj();
 		}
 	}
 
@@ -103,6 +125,35 @@ public class MenuCreator : MonoBehaviour
 				return Tex2D;                 // If data = readable -> return texture
 		}
 		return null;                     // Return null if load failed
+	}
+
+
+	void parseCSV(string[] lines) {
+		var lists = new List<List<string>>();
+		var columns = 0;
+		for(int i = 0; i < lines.Length; i++) {
+			if(string.IsNullOrWhiteSpace(lines[i])) continue;
+			var data = lines[i].Split(',');
+			var list = new List<string>(data);
+			lists.Add(list);
+			columns = Mathf.Max(columns, data.Length);
+		}
+		
+		var rows = lists.Count;
+		var lastParticipant = 0;
+		var trials = new List<Trial>();
+		
+
+		for(int i = 1; i < rows; i++) {
+			//if (lists[i][0] == "Phone"){
+				if (Int32.Parse(lists[i][1]) != lastParticipant && Int32.Parse(lists[i][1]) != 1){
+					ParticipantList.Add(new Participant(Int32.Parse(lists[i][1]), trials));
+					trials.Clear();
+					lastParticipant++;
+				}
+				trials.Add(new Trial(Int32.Parse(lists[i][2]), Int32.Parse(lists[i][1]), Int32.Parse(lists[i][3]), lists[i][4], lists[i][5]));
+			//}
+		}
 	}
 
 }
