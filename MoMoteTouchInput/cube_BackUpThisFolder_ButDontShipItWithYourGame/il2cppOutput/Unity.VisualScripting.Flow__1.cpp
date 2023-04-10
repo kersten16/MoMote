@@ -12293,7 +12293,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool TryCatch_get_canDefine_m492B44C5F844184F
 		L_4 = TryCatch_get_exceptionType_mFE8FA2A0A1F51FA7D429D9B6E026CED831B32E8F_inline(__this, NULL);
 		NullCheck(L_3);
 		bool L_5;
-		L_5 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(31 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_3, L_4);
+		L_5 = VirtualFuncInvoker1< bool, Type_t* >::Invoke(21 /* System.Boolean System.Type::IsAssignableFrom(System.Type) */, L_3, L_4);
 		G_B3_0 = ((int32_t)(L_5));
 		goto IL_0026;
 	}
@@ -12457,7 +12457,7 @@ CATCH_0029_1:
 					Exception_t* L_9 = V_1;
 					NullCheck(L_8);
 					bool L_10;
-					L_10 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(130 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_8, L_9);
+					L_10 = VirtualFuncInvoker1< bool, RuntimeObject* >::Invoke(115 /* System.Boolean System.Type::IsInstanceOfType(System.Object) */, L_8, L_9);
 					V_2 = L_10;
 					bool L_11 = V_2;
 					if (!L_11)
@@ -22552,12 +22552,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AnalyticsIdentifier_tE867F385ABAC820C67EC52E1
 		L_2 = Object_GetType_mE10A8FC1E57F3DF29972CCBC026C2DC3942263B3(__this, NULL);
 		NullCheck(L_2);
 		String_t* L_3;
-		L_3 = VirtualFuncInvoker0< String_t* >::Invoke(35 /* System.String System.Type::get_FullName() */, L_2);
+		L_3 = VirtualFuncInvoker0< String_t* >::Invoke(25 /* System.String System.Type::get_FullName() */, L_2);
 		Type_t* L_4;
 		L_4 = Literal_get_type_m4C09A96298F36ADA9E3FE9F32D1727B5D693F557_inline(__this, NULL);
 		NullCheck(L_4);
 		String_t* L_5;
-		L_5 = VirtualFuncInvoker0< String_t* >::Invoke(13 /* System.String System.Reflection.MemberInfo::get_Name() */, L_4);
+		L_5 = VirtualFuncInvoker0< String_t* >::Invoke(7 /* System.String System.Reflection.MemberInfo::get_Name() */, L_4);
 		String_t* L_6;
 		L_6 = String_Concat_m093934F71A9B351911EE46311674ED463B180006(L_3, _stringLiteralA3DFC0C77ACADE0EE48DCC73E795A597D0270A73, L_5, _stringLiteralB3F14BF976EFD974E34846B742502C802FABAE9D, NULL);
 		NullCheck(L_1);
@@ -22568,7 +22568,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AnalyticsIdentifier_tE867F385ABAC820C67EC52E1
 		L_8 = Literal_get_type_m4C09A96298F36ADA9E3FE9F32D1727B5D693F557_inline(__this, NULL);
 		NullCheck(L_8);
 		String_t* L_9;
-		L_9 = VirtualFuncInvoker0< String_t* >::Invoke(33 /* System.String System.Type::get_Namespace() */, L_8);
+		L_9 = VirtualFuncInvoker0< String_t* >::Invoke(23 /* System.String System.Type::get_Namespace() */, L_8);
 		NullCheck(L_7);
 		L_7->___Namespace_1 = L_9;
 		Il2CppCodeGenWriteBarrier((void**)(&L_7->___Namespace_1), (void*)L_9);

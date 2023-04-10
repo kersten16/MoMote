@@ -4558,6 +4558,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameObject_SetActive_m638E92E1E75E519E5B
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RMF_RadialMenuElement_highlightThisElement_m8862588C2A0D616041EDFDDEDA1DF444C4C68853 (RMF_RadialMenuElement_tA12789D1BD508A92E30364E983B741D56174F3CB* __this, PointerEventData_t9670F3C7D823CCB738A1604C72A1EB90292396FB* ___0_p, const RuntimeMethod* method) ;
 // System.Void RMF_RadialMenuElement::unHighlightThisElement(UnityEngine.EventSystems.PointerEventData)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RMF_RadialMenuElement_unHighlightThisElement_mBD48C479867F95ACF192D034EEF35BB1E249933D (RMF_RadialMenuElement_tA12789D1BD508A92E30364E983B741D56174F3CB* __this, PointerEventData_t9670F3C7D823CCB738A1604C72A1EB90292396FB* ___0_p, const RuntimeMethod* method) ;
+// System.Boolean UnityEngine.GameObject::get_activeSelf()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameObject_get_activeSelf_m4F3E5240E138B66AAA080EA30759A3D0517DA368 (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* __this, const RuntimeMethod* method) ;
 // System.Void System.Collections.Generic.List`1<RMF_RadialMenuElement>::.ctor()
 inline void List_1__ctor_mD6B727543CE06FEDC61C47DD357CFE37BEFDFD97 (List_1_t8538880585DCD1AA3ADBE1F09A85370019BBB488* __this, const RuntimeMethod* method)
 {
@@ -6255,7 +6257,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Dictionary_2_t5B255487AF84FB5AB3382296BC4C307
 		StreamReader_t81027449065C1B0C339DB46241D8001A6F61130B* L_2 = V_0;
 		NullCheck(L_2);
 		String_t* L_3;
-		L_3 = VirtualFuncInvoker0< String_t* >::Invoke(13 /* System.String System.IO.TextReader::ReadToEnd() */, L_2);
+		L_3 = VirtualFuncInvoker0< String_t* >::Invoke(12 /* System.String System.IO.TextReader::ReadToEnd() */, L_2);
 		StringReader_t1A336148FF22A9584E759A9D720CC96C23E35DD8* L_4 = (StringReader_t1A336148FF22A9584E759A9D720CC96C23E35DD8*)il2cpp_codegen_object_new(StringReader_t1A336148FF22A9584E759A9D720CC96C23E35DD8_il2cpp_TypeInfo_var);
 		NullCheck(L_4);
 		StringReader__ctor_m72556EC1062F49E05CF41B0825AC7FA2DB2A81C0(L_4, L_3, NULL);
@@ -6271,7 +6273,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Dictionary_2_t5B255487AF84FB5AB3382296BC4C307
 		StringReader_t1A336148FF22A9584E759A9D720CC96C23E35DD8* L_6 = V_1;
 		NullCheck(L_6);
 		String_t* L_7;
-		L_7 = VirtualFuncInvoker0< String_t* >::Invoke(14 /* System.String System.IO.TextReader::ReadLine() */, L_6);
+		L_7 = VirtualFuncInvoker0< String_t* >::Invoke(13 /* System.String System.IO.TextReader::ReadLine() */, L_6);
 		V_4 = L_7;
 		goto IL_0493;
 	}
@@ -7106,7 +7108,7 @@ IL_048b:
 		StringReader_t1A336148FF22A9584E759A9D720CC96C23E35DD8* L_205 = V_1;
 		NullCheck(L_205);
 		String_t* L_206;
-		L_206 = VirtualFuncInvoker0< String_t* >::Invoke(14 /* System.String System.IO.TextReader::ReadLine() */, L_205);
+		L_206 = VirtualFuncInvoker0< String_t* >::Invoke(13 /* System.String System.IO.TextReader::ReadLine() */, L_205);
 		V_4 = L_206;
 	}
 
@@ -8342,6 +8344,24 @@ IL_0023:
 		// }
 		float L_5 = V_1;
 		return L_5;
+	}
+}
+// System.Void RMF_RadialMenu::toggleMenu()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void RMF_RadialMenu_toggleMenu_mBCD7D4EB606C097B7C2F78308603A6DC19ED304F (RMF_RadialMenu_t2EFC35B032F9A156749F78D682E3AA7048B0A389* __this, const RuntimeMethod* method) 
+{
+	{
+		// this.gameObject.SetActive(!this.gameObject.activeSelf);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0;
+		L_0 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(__this, NULL);
+		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_1;
+		L_1 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(__this, NULL);
+		NullCheck(L_1);
+		bool L_2;
+		L_2 = GameObject_get_activeSelf_m4F3E5240E138B66AAA080EA30759A3D0517DA368(L_1, NULL);
+		NullCheck(L_0);
+		GameObject_SetActive_m638E92E1E75E519E5B24CF150B08CA8E0CDFAB92(L_0, (bool)((((int32_t)L_2) == ((int32_t)0))? 1 : 0), NULL);
+		// }
+		return;
 	}
 }
 // System.Void RMF_RadialMenu::.ctor()
@@ -13075,7 +13095,7 @@ IL_00d7:
 		int64_t L_38 = V_1;
 		NullCheck(L_37);
 		int64_t L_39;
-		L_39 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(30 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_37, L_38, 0);
+		L_39 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(20 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_37, L_38, 0);
 		// if (bmp.info.nBitsPerPixel < 24)
 		BMPImage_t5BEAD0A9EFB998378DF439C3CF9895AA4020DF0C* L_40 = V_0;
 		NullCheck(L_40);
@@ -13314,7 +13334,7 @@ IL_0212:
 		uint32_t L_100 = L_99->___offset_3;
 		NullCheck(L_97);
 		int64_t L_101;
-		L_101 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(30 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_97, ((int64_t)(uint64_t)L_100), 0);
+		L_101 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(20 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_97, ((int64_t)(uint64_t)L_100), 0);
 		// bool uncompressed = bmp.info.compressionMethod == BMPComressionMode.BI_RGB ||
 		//     bmp.info.compressionMethod == BMPComressionMode.BI_BITFIELDS ||
 		//     bmp.info.compressionMethod == BMPComressionMode.BI_ALPHABITFIELDS;
@@ -13678,7 +13698,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_Read32BitImage_m3C86C6E7ED8770
 		L_15 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_14);
 		NullCheck(L_15);
 		int64_t L_16;
-		L_16 = VirtualFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Position() */, L_15);
+		L_16 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Position() */, L_15);
 		int32_t L_17 = V_0;
 		int32_t L_18 = V_1;
 		BinaryReader_t9A6D85F0FE9AE4EBB5E8D66997DFD1D84939E158* L_19 = ___0_aReader;
@@ -13687,7 +13707,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_Read32BitImage_m3C86C6E7ED8770
 		L_20 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_19);
 		NullCheck(L_20);
 		int64_t L_21;
-		L_21 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_20);
+		L_21 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_20);
 		V_9 = (bool)((((int64_t)((int64_t)il2cpp_codegen_add(L_16, ((int64_t)((int32_t)il2cpp_codegen_multiply(((int32_t)il2cpp_codegen_multiply(L_17, L_18)), 4)))))) > ((int64_t)L_21))? 1 : 0);
 		bool L_22 = V_9;
 		if (!L_22)
@@ -13912,7 +13932,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_Read24BitImage_mEA9E89D1254F49
 		L_20 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_19);
 		NullCheck(L_20);
 		int64_t L_21;
-		L_21 = VirtualFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Position() */, L_20);
+		L_21 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Position() */, L_20);
 		int32_t L_22 = V_3;
 		BinaryReader_t9A6D85F0FE9AE4EBB5E8D66997DFD1D84939E158* L_23 = ___0_aReader;
 		NullCheck(L_23);
@@ -13920,7 +13940,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_Read24BitImage_mEA9E89D1254F49
 		L_24 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_23);
 		NullCheck(L_24);
 		int64_t L_25;
-		L_25 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_24);
+		L_25 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_24);
 		V_10 = (bool)((((int64_t)((int64_t)il2cpp_codegen_add(L_21, ((int64_t)L_22)))) > ((int64_t)L_25))? 1 : 0);
 		bool L_26 = V_10;
 		if (!L_26)
@@ -13942,7 +13962,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_Read24BitImage_mEA9E89D1254F49
 		L_31 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_30);
 		NullCheck(L_31);
 		int64_t L_32;
-		L_32 = VirtualFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Position() */, L_31);
+		L_32 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Position() */, L_31);
 		int32_t L_33 = V_3;
 		V_11 = ((int64_t)il2cpp_codegen_add(L_32, ((int64_t)L_33)));
 		String_t* L_34;
@@ -13961,7 +13981,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_Read24BitImage_mEA9E89D1254F49
 		L_38 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_37);
 		NullCheck(L_38);
 		int64_t L_39;
-		L_39 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_38);
+		L_39 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_38);
 		V_11 = L_39;
 		String_t* L_40;
 		L_40 = Int64_ToString_m284E4E55662818E38654309A41C2B07CD436F36B((&V_11), NULL);
@@ -14223,7 +14243,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_Read16BitImage_m01CDADE81C2C20
 		L_20 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_19);
 		NullCheck(L_20);
 		int64_t L_21;
-		L_21 = VirtualFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Position() */, L_20);
+		L_21 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Position() */, L_20);
 		int32_t L_22 = V_3;
 		BinaryReader_t9A6D85F0FE9AE4EBB5E8D66997DFD1D84939E158* L_23 = ___0_aReader;
 		NullCheck(L_23);
@@ -14231,7 +14251,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_Read16BitImage_m01CDADE81C2C20
 		L_24 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_23);
 		NullCheck(L_24);
 		int64_t L_25;
-		L_25 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_24);
+		L_25 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_24);
 		V_12 = (bool)((((int64_t)((int64_t)il2cpp_codegen_add(L_21, ((int64_t)L_22)))) > ((int64_t)L_25))? 1 : 0);
 		bool L_26 = V_12;
 		if (!L_26)
@@ -14253,7 +14273,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_Read16BitImage_m01CDADE81C2C20
 		L_31 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_30);
 		NullCheck(L_31);
 		int64_t L_32;
-		L_32 = VirtualFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Position() */, L_31);
+		L_32 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Position() */, L_31);
 		int32_t L_33 = V_3;
 		V_13 = ((int64_t)il2cpp_codegen_add(L_32, ((int64_t)L_33)));
 		String_t* L_34;
@@ -14272,7 +14292,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_Read16BitImage_m01CDADE81C2C20
 		L_38 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_37);
 		NullCheck(L_38);
 		int64_t L_39;
-		L_39 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_38);
+		L_39 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_38);
 		V_13 = L_39;
 		String_t* L_40;
 		L_40 = Int64_ToString_m284E4E55662818E38654309A41C2B07CD436F36B((&V_13), NULL);
@@ -14569,7 +14589,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_ReadIndexedImage_m6D9613A43853
 		L_25 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_24);
 		NullCheck(L_25);
 		int64_t L_26;
-		L_26 = VirtualFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Position() */, L_25);
+		L_26 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Position() */, L_25);
 		int32_t L_27 = V_4;
 		BinaryReader_t9A6D85F0FE9AE4EBB5E8D66997DFD1D84939E158* L_28 = ___0_aReader;
 		NullCheck(L_28);
@@ -14577,7 +14597,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_ReadIndexedImage_m6D9613A43853
 		L_29 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_28);
 		NullCheck(L_29);
 		int64_t L_30;
-		L_30 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_29);
+		L_30 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_29);
 		V_9 = (bool)((((int64_t)((int64_t)il2cpp_codegen_add(L_26, ((int64_t)L_27)))) > ((int64_t)L_30))? 1 : 0);
 		bool L_31 = V_9;
 		if (!L_31)
@@ -14599,7 +14619,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_ReadIndexedImage_m6D9613A43853
 		L_36 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_35);
 		NullCheck(L_36);
 		int64_t L_37;
-		L_37 = VirtualFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Position() */, L_36);
+		L_37 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Position() */, L_36);
 		int32_t L_38 = V_4;
 		V_10 = ((int64_t)il2cpp_codegen_add(L_37, ((int64_t)L_38)));
 		String_t* L_39;
@@ -14618,7 +14638,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BMPLoader_ReadIndexedImage_m6D9613A43853
 		L_43 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_42);
 		NullCheck(L_43);
 		int64_t L_44;
-		L_44 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_43);
+		L_44 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_43);
 		V_10 = L_44;
 		String_t* L_45;
 		L_45 = Int64_ToString_m284E4E55662818E38654309A41C2B07CD436F36B((&V_10), NULL);
@@ -15168,14 +15188,14 @@ IL_0202:
 		L_105 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_104);
 		NullCheck(L_105);
 		int64_t L_106;
-		L_106 = VirtualFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Position() */, L_105);
+		L_106 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Position() */, L_105);
 		BinaryReader_t9A6D85F0FE9AE4EBB5E8D66997DFD1D84939E158* L_107 = ___0_aReader;
 		NullCheck(L_107);
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_108;
 		L_108 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_107);
 		NullCheck(L_108);
 		int64_t L_109;
-		L_109 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_108);
+		L_109 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_108);
 		V_21 = (bool)((((int64_t)L_106) < ((int64_t)((int64_t)il2cpp_codegen_subtract(L_109, ((int64_t)1)))))? 1 : 0);
 		bool L_110 = V_21;
 		if (L_110)
@@ -15480,14 +15500,14 @@ IL_0148:
 		L_67 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_66);
 		NullCheck(L_67);
 		int64_t L_68;
-		L_68 = VirtualFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Position() */, L_67);
+		L_68 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Position() */, L_67);
 		BinaryReader_t9A6D85F0FE9AE4EBB5E8D66997DFD1D84939E158* L_69 = ___0_aReader;
 		NullCheck(L_69);
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_70;
 		L_70 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_69);
 		NullCheck(L_70);
 		int64_t L_71;
-		L_71 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_70);
+		L_71 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_70);
 		V_18 = (bool)((((int64_t)L_68) < ((int64_t)((int64_t)il2cpp_codegen_subtract(L_71, ((int64_t)1)))))? 1 : 0);
 		bool L_72 = V_18;
 		if (L_72)
@@ -20774,7 +20794,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_0 = ___0_ddsStream;
 		NullCheck(L_0);
 		int64_t L_1;
-		L_1 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_0);
+		L_1 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_0);
 		if ((int64_t)(L_1) > INTPTR_MAX) IL2CPP_RAISE_MANAGED_EXCEPTION(il2cpp_codegen_get_overflow_exception(), DDSLoader_Load_mE9BE27B2D0CC33631A1AFC9C393A24651603E381_RuntimeMethod_var);
 		ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_2 = (ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*)(ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*)SZArrayNew(ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031_il2cpp_TypeInfo_var, (uint32_t)((intptr_t)L_1));
 		V_0 = L_2;
@@ -20784,10 +20804,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_5 = ___0_ddsStream;
 		NullCheck(L_5);
 		int64_t L_6;
-		L_6 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_5);
+		L_6 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_5);
 		NullCheck(L_3);
 		int32_t L_7;
-		L_7 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(31 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, L_3, L_4, 0, ((int32_t)L_6));
+		L_7 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(21 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, L_3, L_4, 0, ((int32_t)L_6));
 		// return Load(buffer);
 		ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_8 = V_0;
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_9;
@@ -21234,7 +21254,7 @@ IL_003a:
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_13 = ___0_stream;
 		NullCheck(L_13);
 		int64_t L_14;
-		L_14 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_13);
+		L_14 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_13);
 		if ((int64_t)(L_14) > INTPTR_MAX) IL2CPP_RAISE_MANAGED_EXCEPTION(il2cpp_codegen_get_overflow_exception(), ImageLoader_LoadTexture_m4BB780762CC7864BA9C5B769FA1CD2D798AA1F54_RuntimeMethod_var);
 		ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* L_15 = (ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*)(ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*)SZArrayNew(ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031_il2cpp_TypeInfo_var, (uint32_t)((intptr_t)L_14));
 		V_4 = L_15;
@@ -21244,10 +21264,10 @@ IL_003a:
 		Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* L_18 = ___0_stream;
 		NullCheck(L_18);
 		int64_t L_19;
-		L_19 = VirtualFuncInvoker0< int64_t >::Invoke(11 /* System.Int64 System.IO.Stream::get_Length() */, L_18);
+		L_19 = VirtualFuncInvoker0< int64_t >::Invoke(10 /* System.Int64 System.IO.Stream::get_Length() */, L_18);
 		NullCheck(L_16);
 		int32_t L_20;
-		L_20 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(31 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, L_16, L_17, 0, ((int32_t)L_19));
+		L_20 = VirtualFuncInvoker3< int32_t, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031*, int32_t, int32_t >::Invoke(21 /* System.Int32 System.IO.Stream::Read(System.Byte[],System.Int32,System.Int32) */, L_16, L_17, 0, ((int32_t)L_19));
 		// Texture2D texture = new Texture2D(1, 1);
 		Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4* L_21 = (Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4*)il2cpp_codegen_object_new(Texture2D_tE6505BC111DD8A424A9DBE8E05D7D09E11FFFCF4_il2cpp_TypeInfo_var);
 		NullCheck(L_21);
@@ -23087,7 +23107,7 @@ IL_00ff:
 				L_5 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_4);
 				NullCheck(L_5);
 				int64_t L_6;
-				L_6 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(30 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_5, ((int64_t)2), 0);
+				L_6 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(20 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_5, ((int64_t)2), 0);
 				// byte imageType = r.ReadByte();
 				BinaryReader_t9A6D85F0FE9AE4EBB5E8D66997DFD1D84939E158* L_7 = V_0;
 				NullCheck(L_7);
@@ -23144,7 +23164,7 @@ IL_0053_1:
 				L_17 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_16);
 				NullCheck(L_17);
 				int64_t L_18;
-				L_18 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(30 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_17, ((int64_t)((int32_t)12)), 0);
+				L_18 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(20 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_17, ((int64_t)((int32_t)12)), 0);
 				// short width = r.ReadInt16();
 				BinaryReader_t9A6D85F0FE9AE4EBB5E8D66997DFD1D84939E158* L_19 = V_0;
 				NullCheck(L_19);
@@ -23189,7 +23209,7 @@ IL_0090_1:
 				L_29 = VirtualFuncInvoker0< Stream_tF844051B786E8F7F4244DBD218D74E8617B9A2DE* >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_28);
 				NullCheck(L_29);
 				int64_t L_30;
-				L_30 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(30 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_29, ((int64_t)1), 1);
+				L_30 = VirtualFuncInvoker2< int64_t, int64_t, int32_t >::Invoke(20 /* System.Int64 System.IO.Stream::Seek(System.Int64,System.IO.SeekOrigin) */, L_29, ((int64_t)1), 1);
 				// Texture2D tex = new Texture2D(width, height, (bitDepth == 24) ? TextureFormat.RGB24 :  TextureFormat.ARGB32, true);
 				int16_t L_31 = V_2;
 				int16_t L_32 = V_3;

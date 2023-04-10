@@ -25,15 +25,6 @@ public class TouchInput : MonoBehaviour
     void Update()
     {
         if (Input.touchCount == 2){
-            // Touch touch0 = Input.GetTouch(0);
-            // Touch touch1 = Input.GetTouch(1);
-            // Vector2 deltaTouch = new Vector2(touch1.position.x - touch0.position.x, touch1.position.y - touch0.position.y);
-            // if (deltaTouch.x > deltaTouch.y && deltaTouch != lastPinch ){       
-            //     viewer.zoom(deltaTouch.x/10000);   
-            // } else {
-            //     viewer.zoom(deltaTouch.y/10000);
-            // }
-            // lastPinch = deltaTouch;
             var touch0 = Input.GetTouch(0);
             var touch1 = Input.GetTouch(1);
             

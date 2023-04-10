@@ -3028,7 +3028,7 @@ IL_006c:
 		(L_39)->SetAt(static_cast<il2cpp_array_size_t>(1), (uint8_t)L_41);
 		NullCheck(L_34);
 		CharU5BU5D_t799905CF001DD5F13F7DBB310181FC4D8B7D0AAB* L_42;
-		L_42 = VirtualFuncInvoker1< CharU5BU5D_t799905CF001DD5F13F7DBB310181FC4D8B7D0AAB*, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* >::Invoke(25 /* System.Char[] System.Text.Encoding::GetChars(System.Byte[]) */, L_34, L_39);
+		L_42 = VirtualFuncInvoker1< CharU5BU5D_t799905CF001DD5F13F7DBB310181FC4D8B7D0AAB*, ByteU5BU5D_tA6237BF417AE52AD70CFB4EF24A7A82613DF9031* >::Invoke(23 /* System.Char[] System.Text.Encoding::GetChars(System.Byte[]) */, L_34, L_39);
 		NullCheck(L_42);
 		int32_t L_43 = 0;
 		uint16_t L_44 = (uint16_t)(L_42)->GetAt(static_cast<il2cpp_array_size_t>(L_43));

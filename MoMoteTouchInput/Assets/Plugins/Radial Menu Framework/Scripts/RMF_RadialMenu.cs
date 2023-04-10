@@ -112,52 +112,52 @@ public class RMF_RadialMenu : MonoBehaviour {
         bool joystickMoved = xAxis > 600 || xAxis < 400 || yAxis > 600 || yAxis < 400;
         //==============================================================================================
 
-
         float rawAngle;
-        
-        if (!useGamepad)
-            rawAngle = Mathf.Atan2(Input.mousePosition.y - rt.position.y, Input.mousePosition.x - rt.position.x) * Mathf.Rad2Deg;
-        else
-            rawAngle = Mathf.Atan2(yAxis-500, 500-xAxis) * Mathf.Rad2Deg;
+        if (Input.touchCount > 0){
+            
+            
+            if (!useGamepad)
+                rawAngle = Mathf.Atan2(Input.GetTouch(0).position.y - rt.position.y, Input.GetTouch(0).position.x - rt.position.x) * Mathf.Rad2Deg;
+            else
+                rawAngle = Mathf.Atan2(yAxis-500, 500-xAxis) * Mathf.Rad2Deg;
 
-        //If no gamepad, update the angle always. Otherwise, only update it if we've moved the joystick.
-        if (!useGamepad)
-            currentAngle = normalizeAngle(-rawAngle + 90 - globalOffset + (angleOffset / 2f));
-        else if (joystickMoved)
-            currentAngle = normalizeAngle(-rawAngle + 90 - globalOffset + (angleOffset / 2f));
+            //If no gamepad, update the angle always. Otherwise, only update it if we've moved the joystick.
+            if (!useGamepad)
+                currentAngle = normalizeAngle(-rawAngle + 90 - globalOffset + (angleOffset / 2f));
+            else if (joystickMoved)
+                currentAngle = normalizeAngle(-rawAngle + 90 - globalOffset + (angleOffset / 2f));
 
-        //Handles lazy selection. Checks the current angle, matches it to the index of an element, and then highlights that element.
-        if (angleOffset != 0 && useLazySelection) {
+            //Handles lazy selection. Checks the current angle, matches it to the index of an element, and then highlights that element.
+            if (angleOffset != 0 && useLazySelection) {
 
-            //Current element index we're pointing at.
-            index = (int)(currentAngle / angleOffset);
+                //Current element index we're pointing at.
+                index = (int)(currentAngle / angleOffset);
 
-            if (elements[index] != null) {
+                if (elements[index] != null) {
 
-                //Select it.
-                selectButton(index);
+                    //Select it.
+                    selectButton(index);
 
-                //If we click or press a "submit" button (Button on joystick, enter, or spacebar), then we'll execut the OnClick() function for the button.
-                if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit")) {
+                    //If we click or press a "submit" button (Button on joystick, enter, or spacebar), then we'll execut the OnClick() function for the button.
+                    //if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit")) {
 
-                    ExecuteEvents.Execute(elements[index].button.gameObject, pointer, ExecuteEvents.submitHandler);
-                    if (!useGamepad){
-                        this.gameObject.SetActive(false);
-                    }
-
-
+                        ExecuteEvents.Execute(elements[index].button.gameObject, pointer, ExecuteEvents.submitHandler);
+                        if (!useGamepad){
+                            this.gameObject.SetActive(false);
+                        }
+                    //}
                 }
             }
 
         }
 
         //Updates the selection follower if we're using one.
-        if (useSelectionFollower && selectionFollowerContainer != null) {
-            if (!useGamepad || joystickMoved)
-                selectionFollowerContainer.rotation = Quaternion.Euler(0, 0, rawAngle + 270);
+        // if (useSelectionFollower && selectionFollowerContainer != null) {
+        //     if (!useGamepad || joystickMoved)
+        //         selectionFollowerContainer.rotation = Quaternion.Euler(0, 0, rawAngle + 270);
            
 
-        } 
+        // } 
 
     }
 

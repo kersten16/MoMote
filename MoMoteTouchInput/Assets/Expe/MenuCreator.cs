@@ -11,75 +11,22 @@ using System.Globalization;
 
 public class MenuCreator : MonoBehaviour
 {
-    //public string modelPath;
     public List<Participant> ParticipantList= new List<Participant>();
     public int numTrials = 15;
-   // public pointerScroller ps;
     public GameObject content;
 	public GameObject menuItemPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-		TextAsset dataset = Resources.Load("experiment") as TextAsset;
-		Debug.Log(dataset);
+		TextAsset dataset = Resources.Load("MoMote_Experiment") as TextAsset;
 		var text = dataset.text;
-		Debug.Log(text);
-		// Debug.Log(lines);
 		parseCSV(text.Split('\n'));
-		setupMenu(ParticipantList);
-		// TextAsset file = Resources.Load<TextAsset>("experiment.csv");
-		// if (file != null){
-		// 		using(var reader = new StreamReader(new file))
-		// 		using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture)){
-		// 		List<Trial> training = new List<Trial> (){new Trial(1,1,0,"Right","Far")};
-		// 		var trainParticipant =new Participant(0, training);
-		// 		ParticipantList.Add(trainParticipant);
-		// 		var records = csv.GetRecords<Trial>().ToList();
-		// 		Debug.Log ( records[0]);
-		// 		for (int i = 1; i<= records.Count/numTrials; i++){
-		// 			ParticipantList.Add(new Participant(i,records.GetRange(numTrials*(i-1),numTrials)));
-		// 		}
-		// 	}
+		// for (int i = 0; i < ParticipantList.Count; i ++){
+		// 	Debug.Log(ParticipantList[i].ID);
 		// }
-		//string pathFile = Application.streamingAssetsPath + "/experiment.csv";
-		// StartCoroutine(getPath(pathFile));
-        // using (var reader = new StreamReader(@"Assets/Resources/experiment.csv"))
-        // using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
-        // {
-        //     List<Trial> training = new List<Trial> (){new Trial(1,1,0,"Right","Far")};
-        //     var trainParticipant =new Participant(0, training);
-        //     ParticipantList.Add(trainParticipant);
-        //     var records = csv.GetRecords<Trial>().ToList();
-		// 	Debug.Log ( records[0]);
-        //     for (int i = 1; i<= records.Count/numTrials; i++){
-        //         ParticipantList.Add(new Participant(i,records.GetRange(numTrials*(i-1),numTrials)));
-        //     }
-        // }
-		// List<Trial> training = new List<Trial> (){new Trial(1,1,0,"Right","Far")};
-		// var trainParticipant =new Participant(0, training);
-		// ParticipantList.Add(trainParticipant);
-		// for (int i = 1; i<= 15; i++){
-		// 	ParticipantList.Add(new Participant(i,training));
-		// }
-        
+		setupMenu(ParticipantList);    
     }
-        // read from csv for participant
-        //generate object for each participant
-        //generate training one no matter what
-
-	// public void getFile(){
-
-		
-	// 	TextAsset level = Resources.Load<TextAsset>("Levels/" + levelName);
-	// 	if(level != null)
-	// 	{
-	// 		using(StreamReader sr = new StreamReader(new MemoryStream(level.bytes)))
-	// 		{
-	// 			...
-	// 		}
-	// 	}
-	// }
 
     public void setupMenu(List<Participant> ParticipantList){
 		foreach (var participant in ParticipantList)
@@ -129,6 +76,8 @@ public class MenuCreator : MonoBehaviour
 
 
 	void parseCSV(string[] lines) {
+		List<Trial> training = new List<Trial> (){new Trial(1,1,0,0,"Right","Far")};
+		ParticipantList.Add(new Participant(0, training));
 		var lists = new List<List<string>>();
 		var columns = 0;
 		for(int i = 0; i < lines.Length; i++) {
@@ -140,21 +89,32 @@ public class MenuCreator : MonoBehaviour
 		}
 		
 		var rows = lists.Count;
-		var lastParticipant = 0;
+		var lastParticipant = 1;
 		var trials = new List<Trial>();
 		
 
 		for(int i = 1; i < rows; i++) {
-			//if (lists[i][0] == "Phone"){
-				if (Int32.Parse(lists[i][1]) != lastParticipant && Int32.Parse(lists[i][1]) != 1){
-					ParticipantList.Add(new Participant(Int32.Parse(lists[i][1]), trials));
+			if (lists[i][5] == "Phone"){
+				//Debug.Log(lists[i][1]);
+				if (Int32.Parse(lists[i][1]) != lastParticipant){
+					Debug.Log("Add " + lastParticipant);
+					ParticipantList.Add(new Participant(lastParticipant, trials));
 					trials.Clear();
 					lastParticipant++;
 				}
-				trials.Add(new Trial(Int32.Parse(lists[i][2]), Int32.Parse(lists[i][1]), Int32.Parse(lists[i][3]), lists[i][4], lists[i][5]));
-			//}
+				trials.Add(new Trial(Int32.Parse(lists[i][2]), Int32.Parse(lists[i][1]), Int32.Parse(lists[i][3]),Int32.Parse(lists[i][4]), lists[i][6], lists[i][7]));
+			}
 		}
+		ParticipantList.Add(new Participant(lastParticipant, trials));
 	}
+	//0 = DesignName osef
+	//1 = Participant
+	//2 = TrialID
+	//3 = Block 1
+	//4 = Block 2
+	//5 = Device
+	//6 = F
+	//7 = Z
 
 }
 
