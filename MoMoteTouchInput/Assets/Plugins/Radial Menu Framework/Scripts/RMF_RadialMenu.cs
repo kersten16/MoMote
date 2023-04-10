@@ -137,14 +137,15 @@ public class RMF_RadialMenu : MonoBehaviour {
 
                     //Select it.
                     selectButton(index);
+                    elements[index].button.onClick.Invoke();
 
                     //If we click or press a "submit" button (Button on joystick, enter, or spacebar), then we'll execut the OnClick() function for the button.
                     //if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit")) {
 
-                        ExecuteEvents.Execute(elements[index].button.gameObject, pointer, ExecuteEvents.submitHandler);
-                        if (!useGamepad){
-                            this.gameObject.SetActive(false);
-                        }
+                        // ExecuteEvents.Execute(elements[index].button.gameObject, pointer, ExecuteEvents.submitHandler);
+                        // if (!useGamepad){
+                        //     this.gameObject.SetActive(false);
+                        // }
                     //}
                 }
             }
@@ -157,9 +158,9 @@ public class RMF_RadialMenu : MonoBehaviour {
         //         selectionFollowerContainer.rotation = Quaternion.Euler(0, 0, rawAngle + 270);
            
 
-        // } 
+     } 
 
-    }
+    //}
 
 
     //Selects the button with the specified index.
@@ -192,7 +193,7 @@ public class RMF_RadialMenu : MonoBehaviour {
     }
 
     public void toggleMenu()
-    {
+    {  
         this.gameObject.SetActive(!this.gameObject.activeSelf);
     }
 

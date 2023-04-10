@@ -62,59 +62,6 @@ public class modelViewer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space)){
-            loaded = true;
-        }
-        transform.position = Vector3.zero;
-        if (loaded){
-            switch(isZoom) 
-                {
-                case -1:
-                    zoom(zoomFactor);
-                    break;
-                case 1:
-                    zoom(-zoomFactor);
-                    break;
-                }
-
-            // todo get normal between previous input and current input
-            // todo rotation angle = delta between previous input and current input
-            //rotate(new Vector3(1,1,1), 20*Time.deltaTime);
-            if(Input.GetKey(KeyCode.Z)){
-                zoom(-zoomFactor);
-            }
-            if(Input.GetKey(KeyCode.S)){
-                zoom(zoomFactor);
-            }
-            if(Input.GetKey(KeyCode.UpArrow)){
-                rotate(new Vector2(0,-1f));
-            }
-            if(Input.GetKey(KeyCode.DownArrow)){
-                rotate(new Vector2(0,1f));
-            }
-            if(Input.GetKey(KeyCode.LeftArrow)){
-                rotate(new Vector2(-1f,0));
-
-            }
-            if(Input.GetKey(KeyCode.RightArrow)){
-                rotate(new Vector2(1f,0));
-            }
-
-            // open radial menu
-            if(Input.GetKeyDown(KeyCode.M)){
-                radialMenu.SetActive(!radialMenu.activeSelf);
-            }
-
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                StartCoroutine(TakeSnapshot(true));
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-           // menuLoader.loadMenu();
-        }
-
 
     }
 
