@@ -25,7 +25,7 @@ public class ExpeManager : MonoBehaviour
     string face;
     int trialNb = 0;
     int errorNb = 0;
-    float startTime;
+    long startTime;
     bool running = false;
 
     public List<Trial> trials = new List<Trial>();
@@ -53,7 +53,7 @@ public class ExpeManager : MonoBehaviour
         setOrthoSize(currentTrial.Z);
         currentLetter = Letters[UnityEngine.Random.Range(0, 4)];
         setLetterOnCurrFace(currentLetter);
-        startTime = Time.time;
+        startTime = DateTime.Now.Ticks;
         modelViewer.loaded = true;
         running = true;
     }
@@ -98,7 +98,7 @@ public class ExpeManager : MonoBehaviour
     public void buttonCLicked(string name){
         if (name == currentLetter){
             if (running){
-                float finalTime = Time.time-startTime;
+                long finalTime = DateTime.Now.Ticks-startTime;
                 LogManager.writeToCsv("Momote," + currentTrial.TrialID + "," + currentTrial.ParticipantID + "," + currentTrial.Block1 + "," + currentTrial.F + "," + currentTrial.Z + "," + finalTime + "," + errorNb);
             }
 
@@ -129,7 +129,7 @@ public class ExpeManager : MonoBehaviour
             resetCubeTransform();
             setOrthoSize(currentTrial.Z);
             setLetterOnCurrFace(currentLetter);
-            startTime = Time.time;
+            startTime = DateTime.Now.Ticks;
         } else {
             endTrials();
         }
