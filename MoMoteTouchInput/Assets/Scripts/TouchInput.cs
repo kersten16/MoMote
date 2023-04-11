@@ -15,7 +15,7 @@ public class TouchInput : MonoBehaviour
     public float lastDistance = 0;
     public float distance;
     
-    public float rotateSpeed = 10f;
+    public float rotateSpeed = 15f;
    // public float RotateSpeedTouch = 5f;
 
     // Start is called before the first frame update
@@ -110,8 +110,8 @@ public class TouchInput : MonoBehaviour
         float rotY = y * rotateSpeed * Mathf.Deg2Rad;
         //cube.transform.Rotate(Vector3.up, -rotX);
         //cube.transform.Rotate(Vector3.right, rotY);
-        CameraParent.transform.RotateAround(cube.transform.position, transform.right, rotY);
-        CameraParent.transform.RotateAround(cube.transform.position, transform.up, rotX);
+        CameraParent.transform.RotateAround(cube.transform.position, CameraParent.transform.right, -rotY);
+        CameraParent.transform.RotateAround(cube.transform.position, CameraParent.transform.up, rotX);
     }
 
     // void RotateLeft(){
