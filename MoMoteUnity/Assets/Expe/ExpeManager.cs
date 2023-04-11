@@ -71,7 +71,7 @@ public class ExpeManager : MonoBehaviour
         Top.SetText("");
         Bottom.SetText("");
         Back.SetText("");
-        Debug.Log("setting letter to " + l);
+        //Debug.Log("setting letter to " + l);
 
         switch (currentTrial.F)
         {
