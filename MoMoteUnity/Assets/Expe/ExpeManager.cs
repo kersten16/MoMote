@@ -99,7 +99,7 @@ public class ExpeManager : MonoBehaviour
         if (name == currentLetter){
             if (running){
                 float finalTime = Time.time-startTime;
-                LogManager.writeToCsv("Momote," + currentTrial.TrialID + "," + currentTrial.ParticipantID + "," + currentTrial.Block1 + "," + currentTrial.F + "," + currentTrial.Z + "," + finalTime + "," + errorNb);
+                LogManager.writeToCsv("Momote," + currentTrial.TrialID + "," + currentTrial.ParticipantID + "," + currentTrial.Block1 + "," + currentTrial.Block1 + ",MoMote," + currentTrial.F + "," + currentTrial.Z + "," + finalTime + "," + errorNb);
             }
 
             // log trial info & Time.time - startTime & errorNb

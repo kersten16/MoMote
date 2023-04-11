@@ -12,7 +12,7 @@ public class MenuCreator : MonoBehaviour
 {
     public string modelPath;
     public List<Participant> ParticipantList= new List<Participant>();
-    public int numTrials = 15;
+    public int numTrials = 60;
     public pointerScroller ps;
     public GameObject content;
 	public GameObject menuItemPrefab;
@@ -20,16 +20,18 @@ public class MenuCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        using (var reader = new StreamReader(@"Assets/Resources/experiment.csv"))
+        using (var reader = new StreamReader(@"Assets/Resources/MoMote_Experiment.csv"))
         using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
-            List<Trial> training = new List<Trial> (){new Trial(1,1,0,"Right","Far")};
+            List<Trial> training = new List<Trial> (){new Trial(1,1,0,0,"MoMote","Right","Far")};
             var trainParticipant =new Participant(0, training);
             ParticipantList.Add(trainParticipant);
             var records = csv.GetRecords<Trial>().ToList();
-			Debug.Log ( records[0]);
+			Debug.Log ( records[1].ParticipantID + " " + records[1].D );
             for (int i = 1; i<= records.Count/numTrials; i++){
-                ParticipantList.Add(new Participant(i,records.GetRange(numTrials*(i-1),numTrials)));
+				//records.FindAll((t) => t.ParticipantID == i && t.D == "MoMote");
+				ParticipantList.Add(new Participant(i,records.GetRange(numTrials*(i-1),numTrials)));
+                //ParticipantList.Add(new Participant(i,records.FindAll((t) => t.ParticipantID == i && t.D == "MoMote")));
             }
         }
         setupMenu(ParticipantList);
@@ -45,8 +47,13 @@ public class MenuCreator : MonoBehaviour
 			//childObject.GetComponent<modelLoader>().modelPath = modelPath;
 			childObject.transform.SetParent(content.transform);
 			childObject.GetComponent<RectTransform>().localScale = new Vector3(1,1,1);
-			Debug.Log(participant.Trials[0].TrialID);
-
+			// foreach (var item in participant.Trials)
+			// {
+			// 	Debug.Log(item.TrialID + " D: " + item.D);
+			// }
+			// Debug.Log(participant.ID +" Before remove "+participant.Trials[0].D);
+			participant.Trials.RemoveAll((t)=> t.D == "Phone");
+			Debug.Log(participant.ID +" After remove "+participant.Trials.Count);
 			childObject.GetComponent<ExpeLoader>().participant = participant;
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = Resources.Load<Sprite>(Application.persistentDataPath + "/" + menuItem.name.Split('.')[0] + ".png");
 			//childObject.GetComponent<modelLoader>().modelPreview.overrideSprite = LoadNewSprite(Application.persistentDataPath + "/" + "something.png");

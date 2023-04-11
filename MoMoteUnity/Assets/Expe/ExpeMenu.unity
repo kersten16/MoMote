@@ -895,7 +895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelPath: 
   ParticipantList: []
-  numTrials: 15
+  numTrials: 60
   ps: {fileID: 1217113081}
   content: {fileID: 1305257653}
   menuItemPrefab: {fileID: 3534374838611525535, guid: 23e413dd16831a7309bbba621ba14d1c,
@@ -912,9 +912,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44e14ac64678d7ef39f0a4d11f1403a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arduinoReceiverPrefab: {fileID: 44982843747412030, guid: 1a86930c96f4345578ca4398a3233907,
-    type: 3}
-  mc: {fileID: 1305257657}
   listener: {fileID: 1217113076}
 --- !u!1 &1436633229
 GameObject:
