@@ -11,6 +11,8 @@ public class TouchInput : MonoBehaviour
     public GameObject cube;
     public GameObject radialMenu;
 
+    int previousTouchCount = 0;
+
     public Vector2 lastRotPosition;
     public float lastDistance = 0;
     public float distance;
@@ -40,7 +42,7 @@ public class TouchInput : MonoBehaviour
                 lastDistance = distance;
             } else if (Input.touchCount>0){
                 Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
+                if (touch.phase == TouchPhase.Began || (Input.touchCount == 1 && previousTouchCount == 2))
                 {
                     lastRotPosition = touch.position;
                 }
@@ -56,6 +58,7 @@ public class TouchInput : MonoBehaviour
                     lastRotPosition = new Vector2();
                 }
             }
+            previousTouchCount = Input.touchCount;
         }
         // } else if (Input.touchCount > 0){
         //     touch = Input.GetTouch(0);
