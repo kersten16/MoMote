@@ -1,0 +1,16 @@
+DesignName,ParticipantID,TrialID,Block1,F,Z,Time,ErrorCount
+Momote,211,15,1,Left,Far,35.45281,0
+Momote,212,15,2,Right,Normal,5.23867,0
+Momote,213,15,3,Bottom,Far,15.93085,0
+Momote,214,15,4,Top,Normal,4.621181,0
+Momote,215,15,5,Back,Far,19.38279,0
+Momote,216,15,6,Bottom,Normal,6.508133,0
+Momote,217,15,7,Left,Normal,5.66597,0
+Momote,218,15,8,Top,Far,13.6063,0
+Momote,219,15,9,Top,Close,6.415558,0
+Momote,220,15,10,Bottom,Close,11.43966,0
+Momote,221,15,11,Back,Normal,6.063652,0
+Momote,222,15,12,Left,Close,7.288422,0
+Momote,223,15,13,Right,Far,20.12785,0
+Momote,224,15,14,Right,Close,6.058212,0
+Momote,225,15,15,Back,Close,7.166519,0
