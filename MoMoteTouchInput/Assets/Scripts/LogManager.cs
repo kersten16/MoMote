@@ -22,13 +22,14 @@ public class LogManager : MonoBehaviour
     {
         participantID = ID;
         if (participantID == 0) return;
+        Debug.Log(Application.persistentDataPath);
         FILE_PATH = Application.persistentDataPath + "/InputLog_"+participantID+"_"+DateTime.Now.ToString("MMMd_HHmm")+".txt";
         CSV_PATH = Application.persistentDataPath + "/ExperimentLog_" +participantID+"_"+DateTime.Now.ToString("MMMd_HHmm")+".csv";
         logWriter = new StreamWriter(FILE_PATH, true);
         logWriter.WriteLine("App Launched " + DateTime.Now);
         logWriter.Close();
         csvWriter = new StreamWriter(CSV_PATH, true);
-        csvWriter.WriteLine("DesignName,ParticipantID,TrialID,Block1,F,Z,Time,ErrorCount");
+        csvWriter.WriteLine("DesignName,ParticipantID,TrialID,Block1,Block2,D,F,Z,Time,ErrorCount");
         csvWriter.Close();
     }
 

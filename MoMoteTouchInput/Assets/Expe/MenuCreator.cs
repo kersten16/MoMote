@@ -20,6 +20,7 @@ public class MenuCreator : MonoBehaviour
     void Start()
     {
 		TextAsset dataset = Resources.Load("MoMote_Experiment") as TextAsset;
+		
 		var text = dataset.text;
 		parseCSV(text.Split('\n'));
 		// for (int i = 0; i < ParticipantList.Count; i ++){
