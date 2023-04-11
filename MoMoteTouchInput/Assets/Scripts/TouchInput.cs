@@ -6,7 +6,7 @@ public class TouchInput : MonoBehaviour
 {
 
     //public Vector2 lastPinch = new Vector2(0,0);
-    public Camera Camera;
+    public GameObject CameraParent;
     public modelViewer viewer;
     public GameObject cube;
     public GameObject radialMenu;
@@ -108,8 +108,10 @@ public class TouchInput : MonoBehaviour
     void Rotate(float x, float y){
         float rotX = x * rotateSpeed * Mathf.Deg2Rad;
         float rotY = y * rotateSpeed * Mathf.Deg2Rad;
-        cube.transform.Rotate(Vector3.up, -rotX);
-        cube.transform.Rotate(Vector3.right, rotY);
+        //cube.transform.Rotate(Vector3.up, -rotX);
+        //cube.transform.Rotate(Vector3.right, rotY);
+        CameraParent.transform.RotateAround(cube.transform.position, transform.right, rotY);
+        CameraParent.transform.RotateAround(cube.transform.position, transform.up, rotX);
     }
 
     // void RotateLeft(){
