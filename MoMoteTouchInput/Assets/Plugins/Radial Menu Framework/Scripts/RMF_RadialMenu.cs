@@ -137,7 +137,9 @@ public class RMF_RadialMenu : MonoBehaviour {
 
                     //Select it.
                     selectButton(index);
-                    //elements[index].button.onClick.Invoke();
+                    if(Input.GetTouch(0).phase == TouchPhase.Ended){
+                        elements[index].button.onClick.Invoke();
+                    }
 
                     //If we click or press a "submit" button (Button on joystick, enter, or spacebar), then we'll execut the OnClick() function for the button.
                     //if (Input.GetMouseButtonDown(0) || Input.GetButtonDown("Submit")) {

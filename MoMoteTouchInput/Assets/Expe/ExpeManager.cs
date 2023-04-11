@@ -14,6 +14,7 @@ public class ExpeManager : MonoBehaviour
     public GameObject finalMessage;
     public GameObject radialMenu;
 
+    public GameObject mainMenuButton;
 
     public GameObject cube;
     public TextMeshPro Left;
@@ -45,6 +46,9 @@ public class ExpeManager : MonoBehaviour
 
     public void setExpe(){
         Debug.Log(participant.Trials[0].ParticipantID);
+        if (participant.ID != 0){
+            mainMenuButton.SetActive(false);
+        }
         trials = participant.Trials;
         
         currentTrial = trials[0];
@@ -57,6 +61,7 @@ public class ExpeManager : MonoBehaviour
         startTime = DateTime.Now.Ticks;
         modelViewer.loaded = true;
         running = true;
+        
     }
 
     // Update is called once per frame

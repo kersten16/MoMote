@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571328, b: 0.3069218, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -658,7 +658,6 @@ GameObject:
   - component: {fileID: 1217113080}
   - component: {fileID: 1217113079}
   - component: {fileID: 1217113078}
-  - component: {fileID: 1217113081}
   m_Layer: 5
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
@@ -736,7 +735,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1217113081}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: pointerScroller, Assembly-CSharp
         m_MethodName: selectObj
         m_Mode: 1
@@ -786,21 +785,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1217113076}
   m_CullTransparentMesh: 1
---- !u!114 &1217113081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1217113076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a47f37f24cbbf465ebe473b5cb5e7ef0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Content: {fileID: 1305257653}
-  ScrollView: {fileID: 1146175122}
-  ESystem: {fileID: 1043947072}
 --- !u!1 &1305257653
 GameObject:
   m_ObjectHideFlags: 0
