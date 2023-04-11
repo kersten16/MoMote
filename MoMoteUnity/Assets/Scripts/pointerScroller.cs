@@ -57,11 +57,11 @@ public class pointerScroller : MonoBehaviour
         float contentHeight = ScrollView.content.sizeDelta.y;
         int joystickY = Int32.Parse(input[1]);
         if (joystickY > 600){
-            ScrollView.verticalNormalizedPosition += 5*(20/contentHeight);
+            ScrollView.verticalNormalizedPosition += 5*(30/contentHeight);
             toLog = "Scroll Down: "+(ScrollView.verticalNormalizedPosition);
         }
         else if (joystickY < 400){
-            ScrollView.verticalNormalizedPosition -= 5*(20/contentHeight);
+            ScrollView.verticalNormalizedPosition -= 5*(30/contentHeight);
             toLog = "Scroll Up: "+(ScrollView.verticalNormalizedPosition);
         }
         if (currentTriggerPress-oldTriggerPress == 1){
