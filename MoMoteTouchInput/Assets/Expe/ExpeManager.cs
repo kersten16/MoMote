@@ -12,6 +12,7 @@ public class ExpeManager : MonoBehaviour
     public GameObject camParent;
     public modelViewer modelViewer;
     public GameObject finalMessage;
+    public GameObject radialMenu;
 
 
     public GameObject cube;
@@ -96,6 +97,7 @@ public class ExpeManager : MonoBehaviour
     }
 
     public void buttonCLicked(string name){
+        radialMenu.SetActive(!radialMenu.activeSelf);
         Debug.Log("test I pressed a button lol");
         if (name == currentLetter){
             if (running){

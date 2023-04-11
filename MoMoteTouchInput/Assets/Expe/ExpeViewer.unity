@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414729, b: 0.121078685, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -226,6 +226,7 @@ MonoBehaviour:
   camParent: {fileID: 11705852}
   modelViewer: {fileID: 11705856}
   finalMessage: {fileID: 570882230}
+  radialMenu: {fileID: 847481833}
   cube: {fileID: 286258714069483171}
   Left: {fileID: 286258714069483174}
   Right: {fileID: 286258714069483175}
@@ -1110,6 +1111,10 @@ PrefabInstance:
       propertyPath: useGamepad
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11405222, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: useLazySelection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 11435124, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 5
@@ -1453,7 +1458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3fdaff2a13a49aebb776e786beb52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 988002710}
+  CameraParent: {fileID: 11705852}
   viewer: {fileID: 11705856}
   cube: {fileID: 286258714069483171}
   radialMenu: {fileID: 847481833}
@@ -1919,6 +1924,7 @@ MonoBehaviour:
   camParent: {fileID: 0}
   modelViewer: {fileID: 0}
   finalMessage: {fileID: 0}
+  radialMenu: {fileID: 0}
   cube: {fileID: 0}
   Left: {fileID: 0}
   Right: {fileID: 0}
