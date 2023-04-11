@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Expe/ExpeViewer.unity
     guid: 800c228804c2c3ba8990fcdf8ac29d51
+  - enabled: 1
+    path: Assets/Scenes/ArduinoReceiverScene.unity
+    guid: 1e076f85874c5baf9815bcf54abbea6a
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c93e6de3a26d5322e914328052fb2542,
       type: 2}

@@ -34,8 +34,8 @@ public class TouchInput : MonoBehaviour
             
                 distance = Vector2.Distance(touch1.position, touch0.position);
 
-                if (Mathf.Abs(lastDistance-distance) >= 50) lastDistance = distance; // for avoiding sharp zooms on first touch
-                viewer.zoom((lastDistance - distance) * 0.001f);
+                if (touch0.phase==TouchPhase.Began || touch1.phase==TouchPhase.Began) lastDistance = distance; // for avoiding sharp zooms on first touch
+                viewer.zoom((lastDistance - distance) * 0.005f);
 
                 lastDistance = distance;
             } else if (Input.touchCount>0){
