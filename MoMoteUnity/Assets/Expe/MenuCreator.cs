@@ -23,7 +23,7 @@ public class MenuCreator : MonoBehaviour
         using (var reader = new StreamReader(@"Assets/Resources/MoMote_Experiment.csv"))
         using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
-            List<Trial> training = new List<Trial> (){new Trial(1,1,0,0,"MoMote","Right","Far")};
+			List<Trial> training = new List<Trial> (){new Trial(1,0,0,0,"MoMote","Right","Far"), new Trial(2,0,0,0,"MoMote","Left","Close"), new Trial(3,0,0,0,"MoMote","Back","Normal")};
             var trainParticipant =new Participant(0, training);
             ParticipantList.Add(trainParticipant);
             var records = csv.GetRecords<Trial>().ToList();

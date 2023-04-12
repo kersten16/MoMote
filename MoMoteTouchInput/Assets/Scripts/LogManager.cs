@@ -29,7 +29,7 @@ public class LogManager : MonoBehaviour
         logWriter.WriteLine("App Launched " + DateTime.Now);
         logWriter.Close();
         csvWriter = new StreamWriter(CSV_PATH, true);
-        csvWriter.WriteLine("DesignName,ParticipantID,TrialID,Block1,Block2,D,F,Z,Time,ErrorCount");
+        csvWriter.WriteLine("DesignName,ParticipantID,TrialID,Block1,Block2,D,F,Z,Time,SearchTime,MenuTime,ErrorCount");
         csvWriter.Close();
     }
 

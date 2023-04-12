@@ -193,11 +193,4 @@ public class RMF_RadialMenu : MonoBehaviour {
         return angle;
 
     }
-
-    public void toggleMenu()
-    {  
-        this.gameObject.SetActive(!this.gameObject.activeSelf);
-    }
-
-
 }

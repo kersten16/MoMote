@@ -18,9 +18,10 @@ public class modelViewer : MonoBehaviour
     public MenuLoader menuLoader;
     public EventSystem ESystem;
     public AsyncOperation unloader;
+    public ExpeManager expeManager;
     Bounds bounds;
     public bool loaded = false;
-    public float zoomFactor = 10f;
+    float zoomFactor = 1f;
     public int isZoom = 0;
     Texture2D virtualPhoto;
     private string modelName;
@@ -127,9 +128,9 @@ public class modelViewer : MonoBehaviour
         Debug.Log(z);
         if (cam.orthographic)
         {
-            if ( (z < 0 && (cam.orthographicSize-(z*5)) >= 0.001f) || ( z > 0 && (cam.orthographicSize+(z*5))<= 30))
+            if ( (z < 0 && (cam.orthographicSize-z) >= 0.001f) || ( z > 0 && (cam.orthographicSize+z<= 60)))
             {
-                cam.orthographicSize += z*5;
+                cam.orthographicSize += z;
             }
         }
         else
@@ -173,7 +174,8 @@ public class modelViewer : MonoBehaviour
         int buttonValue = Int32.Parse(input[2]);
 
         if (buttonValue-oldButtonValue == 1){
-            radialMenu.SetActive(!radialMenu.activeSelf);
+            expeManager.toggleMenu();
+            Debug.Log("Open menu");
             toLog="Button pressed :"+radialMenu.activeSelf + DateTime.Now;
         }
         if (!radialMenu.activeSelf){
@@ -215,7 +217,6 @@ public class modelViewer : MonoBehaviour
                 //select value
                 radialMenuScript.elements[radialMenuScript.index].button.onClick.Invoke();
                 toLog = "Radial Select : X "+joystickX + ", Y " + joystickY;
-                radialMenu.SetActive(!radialMenu.activeSelf);
                 //do math to figure out which value was selected, or print this from radial script
             }
         }

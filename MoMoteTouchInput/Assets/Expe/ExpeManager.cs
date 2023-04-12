@@ -15,6 +15,7 @@ public class ExpeManager : MonoBehaviour
     public GameObject radialMenu;
 
     public GameObject mainMenuButton;
+    public GameObject circMenuButton;
 
     public GameObject cube;
     public TextMeshPro Left;
@@ -28,6 +29,7 @@ public class ExpeManager : MonoBehaviour
     int trialNb = 0;
     int errorNb = 0;
     long startTime;
+    long openMenuTime;
     bool running = false;
 
     public List<Trial> trials = new List<Trial>();
@@ -106,8 +108,11 @@ public class ExpeManager : MonoBehaviour
         Debug.Log("test I pressed a button lol");
         if (name == currentLetter){
             if (running){
-                long finalTime = DateTime.Now.Ticks-startTime;
-                LogManager.writeToCsv("Momote," + currentTrial.TrialID + "," + currentTrial.ParticipantID + "," + currentTrial.Block1 + "," + currentTrial.Block2 + ",Phone," + currentTrial.F + "," + currentTrial.Z + "," + finalTime + "," + errorNb);
+                long now = DateTime.Now.Ticks;
+                string searchTime = new TimeSpan(openMenuTime - startTime).TotalMilliseconds.ToString().Replace(',',' ');
+                string menuTime = new TimeSpan(now-openMenuTime).TotalMilliseconds.ToString().Replace(',',' ');
+                string finalTime = new TimeSpan(now-startTime).TotalMilliseconds.ToString().Replace(',',' ');
+                LogManager.writeToCsv("Momote," + currentTrial.TrialID + "," + currentTrial.ParticipantID + "," + currentTrial.Block1 + "," + currentTrial.Block2 + ",Phone," + currentTrial.F + "," + currentTrial.Z + "," + finalTime + "," + searchTime + "," + menuTime + "," + errorNb);
             }
 
             // log trial info & Time.time - startTime & errorNb
@@ -138,6 +143,7 @@ public class ExpeManager : MonoBehaviour
             setOrthoSize(currentTrial.Z);
             setLetterOnCurrFace(currentLetter);
             startTime = DateTime.Now.Ticks;
+            openMenuTime = 0;
         } else {
             endTrials();
         }
@@ -147,6 +153,7 @@ public class ExpeManager : MonoBehaviour
         running = false;
         modelViewer.loaded = false;
         finalMessage.SetActive(true);
+        cube.SetActive(false);
     }
 
     void setOrthoSize(string z){
@@ -156,7 +163,7 @@ public class ExpeManager : MonoBehaviour
         } else if(z == "Normal"){
             zoom = 12;
         } else if (z == "Far"){
-            zoom = 30;
+            zoom = 60;
         }
         cam.orthographicSize = zoom;
     }
@@ -164,7 +171,18 @@ public class ExpeManager : MonoBehaviour
     void resetCubeTransform(){
         cube.transform.position = Vector3.zero;
         camParent.transform.eulerAngles = Vector3.zero;
+        circMenuButton.SetActive(true);
     }
 
+    void setOpenMenuTime(long t){
+        openMenuTime = t;
+    }
+
+    public void toggleMenu()
+    {
+        radialMenu.SetActive(!radialMenu.activeSelf);
+        setOpenMenuTime(DateTime.Now.Ticks);
+        circMenuButton.SetActive(false);
+    }
     // on menu, open to define the participant
 }

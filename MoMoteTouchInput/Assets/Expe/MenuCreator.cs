@@ -77,7 +77,7 @@ public class MenuCreator : MonoBehaviour
 
 
 	void parseCSV(string[] lines) {
-		List<Trial> training = new List<Trial> (){new Trial(1,1,0,0,"Right","Far")};
+		List<Trial> training = new List<Trial> (){new Trial(1,0,0,0,"Phone","Right","Far"), new Trial(2,0,0,0,"Phone","Left","Close"), new Trial(3,0,0,0,"Phone","Back","Normal")};
 		ParticipantList.Add(new Participant(0, training));
 		var lists = new List<List<string>>();
 		var columns = 0;
@@ -103,7 +103,7 @@ public class MenuCreator : MonoBehaviour
 					trials.Clear();
 					lastParticipant++;
 				}
-				trials.Add(new Trial(Int32.Parse(lists[i][2]), Int32.Parse(lists[i][1]), Int32.Parse(lists[i][3]),Int32.Parse(lists[i][4]), lists[i][6], lists[i][7]));
+				trials.Add(new Trial(Int32.Parse(lists[i][2]), Int32.Parse(lists[i][1]), Int32.Parse(lists[i][3]),Int32.Parse(lists[i][4]), lists[i][5], lists[i][6], lists[i][7]));
 			}
 		}
 		ParticipantList.Add(new Participant(lastParticipant, trials));

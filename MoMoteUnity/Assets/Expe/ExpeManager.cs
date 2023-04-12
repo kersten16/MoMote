@@ -13,6 +13,7 @@ public class ExpeManager : MonoBehaviour
     public modelViewer modelViewer;
     public GameObject finalMessage;
 
+    public GameObject radialMenu;
 
     public GameObject cube;
     public TextMeshPro Left;
@@ -25,7 +26,10 @@ public class ExpeManager : MonoBehaviour
     string face;
     int trialNb = 0;
     int errorNb = 0;
-    float startTime;
+    long startTime;
+    long openMenuTime;
+    bool notOpenned;
+
     bool running = false;
 
     public List<Trial> trials = new List<Trial>();
@@ -53,7 +57,7 @@ public class ExpeManager : MonoBehaviour
         setOrthoSize(currentTrial.Z);
         currentLetter = Letters[UnityEngine.Random.Range(0, 4)];
         setLetterOnCurrFace(currentLetter);
-        startTime = Time.time;
+        startTime = DateTime.Now.Ticks;
         modelViewer.loaded = true;
         running = true;
     }
@@ -96,10 +100,14 @@ public class ExpeManager : MonoBehaviour
     }
 
     public void buttonCLicked(string name){
+        radialMenu.SetActive(!radialMenu.activeSelf);
         if (name == currentLetter){
             if (running){
-                float finalTime = Time.time-startTime;
-                LogManager.writeToCsv("Momote," + currentTrial.TrialID + "," + currentTrial.ParticipantID + "," + currentTrial.Block1 + "," + currentTrial.Block1 + ",MoMote," + currentTrial.F + "," + currentTrial.Z + "," + finalTime + "," + errorNb);
+                long now = DateTime.Now.Ticks;
+                string searchTime = new TimeSpan(openMenuTime - startTime).TotalMilliseconds.ToString().Replace(',',' ');
+                string menuTime = new TimeSpan(now-openMenuTime).TotalMilliseconds.ToString().Replace(',',' ');
+                string finalTime = new TimeSpan(now-startTime).TotalMilliseconds.ToString().Replace(',',' ');
+                LogManager.writeToCsv("Momote," + currentTrial.TrialID + "," + currentTrial.ParticipantID + "," + currentTrial.Block1 + "," + currentTrial.Block2 + ",Phone," + currentTrial.F + "," + currentTrial.Z + "," + finalTime + "," + searchTime + "," + menuTime + "," + errorNb);
             }
 
             // log trial info & Time.time - startTime & errorNb
@@ -129,7 +137,7 @@ public class ExpeManager : MonoBehaviour
             resetCubeTransform();
             setOrthoSize(currentTrial.Z);
             setLetterOnCurrFace(currentLetter);
-            startTime = Time.time;
+            startTime = DateTime.Now.Ticks;
         } else {
             endTrials();
         }
@@ -148,7 +156,7 @@ public class ExpeManager : MonoBehaviour
         } else if(z == "Normal"){
             zoom = 12;
         } else if (z == "Far"){
-            zoom = 30;
+            zoom = 55;
         }
         cam.orthographicSize = zoom;
     }
@@ -156,6 +164,20 @@ public class ExpeManager : MonoBehaviour
     void resetCubeTransform(){
         cube.transform.position = Vector3.zero;
         camParent.transform.eulerAngles = Vector3.zero;
+        notOpenned = true;
+    }
+
+    void setOpenMenuTime(long t){
+        openMenuTime = t;
+    }
+
+    public void toggleMenu()
+    {
+        if (notOpenned){
+            radialMenu.SetActive(!radialMenu.activeSelf);
+            setOpenMenuTime(DateTime.Now.Ticks);
+            notOpenned = false;
+        }
     }
 
     // on menu, open to define the participant

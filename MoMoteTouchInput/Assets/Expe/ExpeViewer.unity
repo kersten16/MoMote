@@ -228,6 +228,7 @@ MonoBehaviour:
   finalMessage: {fileID: 570882230}
   radialMenu: {fileID: 847481833}
   mainMenuButton: {fileID: 376481549}
+  circMenuButton: {fileID: 444886268}
   cube: {fileID: 286258714069483171}
   Left: {fileID: 286258714069483174}
   Right: {fileID: 286258714069483175}
@@ -980,7 +981,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Thanks for participating in our study, we hope you enjoyed it!
+  m_text: "Thanks for \nparticipating in our \nstudy, we hope \nyou enjoyed it!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1245,8 +1246,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 847481832}
-        m_TargetAssemblyTypeName: RMF_RadialMenu, Assembly-CSharp-firstpass
+      - m_Target: {fileID: 11705858}
+        m_TargetAssemblyTypeName: ExpeManager, Assembly-CSharp
         m_MethodName: toggleMenu
         m_Mode: 1
         m_Arguments:
@@ -2330,6 +2331,7 @@ MonoBehaviour:
   finalMessage: {fileID: 0}
   radialMenu: {fileID: 0}
   mainMenuButton: {fileID: 0}
+  circMenuButton: {fileID: 0}
   cube: {fileID: 0}
   Left: {fileID: 0}
   Right: {fileID: 0}
