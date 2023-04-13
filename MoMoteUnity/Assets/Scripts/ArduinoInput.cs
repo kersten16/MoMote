@@ -22,7 +22,7 @@ using System.IO.Ports;
 public class ArduinoInput : MonoBehaviour
 {
     [Tooltip("Port name with which the SerialPort object will be created.")]
-    public static string portName = "COM10";
+    public static string portName = "/dev/ttyACM0";
 
     [Tooltip("Baud rate that the serial device is using to transmit data.")]
     public static int baudRate = 9600;
@@ -67,6 +67,8 @@ public class ArduinoInput : MonoBehaviour
     {
        // DontDestroyOnLoad(this.gameObject);
         data_stream = new SerialPort(portName, baudRate);
+        data_stream.DtrEnable = true;
+        data_stream.RtsEnable = true;
         data_stream.Open();
 
     }
@@ -83,7 +85,7 @@ public class ArduinoInput : MonoBehaviour
             messageListener.GetComponent<pointerScroller>().receiveData(datas);
 
         }else if (SceneManager.GetActiveScene().name == "ExpeViewer"){
-            Debug.Log("in model viewer");
+            //Debug.Log("in model viewer");
             messageListener.GetComponent<modelViewer>().receiveData(datas);
         }
         

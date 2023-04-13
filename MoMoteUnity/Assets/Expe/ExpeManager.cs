@@ -104,10 +104,10 @@ public class ExpeManager : MonoBehaviour
         if (name == currentLetter){
             if (running){
                 long now = DateTime.Now.Ticks;
-                string searchTime = new TimeSpan(openMenuTime - startTime).TotalMilliseconds.ToString().Replace(',',' ');
-                string menuTime = new TimeSpan(now-openMenuTime).TotalMilliseconds.ToString().Replace(',',' ');
-                string finalTime = new TimeSpan(now-startTime).TotalMilliseconds.ToString().Replace(',',' ');
-                LogManager.writeToCsv("Momote," + currentTrial.TrialID + "," + currentTrial.ParticipantID + "," + currentTrial.Block1 + "," + currentTrial.Block2 + ",Phone," + currentTrial.F + "," + currentTrial.Z + "," + finalTime + "," + searchTime + "," + menuTime + "," + errorNb);
+                string searchTime = new TimeSpan(openMenuTime - startTime).TotalMilliseconds.ToString().Replace(',','.');
+                string menuTime = new TimeSpan(now-openMenuTime).TotalMilliseconds.ToString().Replace(',','.');
+                string finalTime = new TimeSpan(now-startTime).TotalMilliseconds.ToString().Replace(',','.');
+                LogManager.writeToCsv("Momote," + currentTrial.ParticipantID + "," + currentTrial.TrialID + "," + currentTrial.Block1 + "," + currentTrial.Block2 + ",MoMote," + currentTrial.F + "," + currentTrial.Z + "," + finalTime + "," + searchTime + "," + menuTime + "," + errorNb);
             }
 
             // log trial info & Time.time - startTime & errorNb

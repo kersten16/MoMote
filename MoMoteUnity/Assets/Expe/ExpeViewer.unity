@@ -747,7 +747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &570882231
 RectTransform:
   m_ObjectHideFlags: 0
@@ -917,6 +917,18 @@ PrefabInstance:
     - target: {fileID: 11471096, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: C
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493070, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.9607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493070, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.9607843
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493070, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.9607843
       objectReference: {fileID: 0}
     - target: {fileID: 11493070, guid: 69988eeaf22db50428892b9cf8812ad4, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.b
