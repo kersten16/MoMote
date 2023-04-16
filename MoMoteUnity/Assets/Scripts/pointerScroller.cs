@@ -51,7 +51,7 @@ public class pointerScroller : MonoBehaviour
 
     public void receiveData(string [] input){
         string toLog ="";
-       // Debug.Log(input);
+        //Debug.Log(input);
         currentTriggerPress = Int32.Parse(input[3]);
         //int joystickX = Int32.Parse(input[0]);
         float contentHeight = ScrollView.content.sizeDelta.y;
